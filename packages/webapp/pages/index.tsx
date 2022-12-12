@@ -39,7 +39,6 @@ export function Index() {
         </div>
       </div>
       <ProjectsSection />
-      <CollaborateSection />
     </>
   );
 }
@@ -52,7 +51,9 @@ const ProjectsSection = () => {
         <div className="mt-8 grid md:grid-cols-3 gap-4">
           {
             Array(6).fill("e").map((_, index) => (
-              <div className="w-full h-[220px] md:h-[320px] rounded-sm shadow-sm bg-slate-200" key={index}></div>
+              <div className="w-full h-[220px] md:h-[320px] rounded-sm shadow-sm bg-slate-200 grid place-items-center" key={index}>
+                <h4 className="text-2xl text-slate-500">Work in Progress...</h4>
+              </div>
             ))
           }
         </div>
@@ -61,15 +62,5 @@ const ProjectsSection = () => {
   )
 }
 
-const CollaborateSection = () => {
-  return (
-    <section className="bg-slate-200 h-[300px] relative">
-      <video autoPlay loop muted className="object-cover">
-        <source src="/videos/bg_lines.mp4" type="video/mp4" />
-      </video>
-      <div className="fixed top-0 bg-red bottom-0 w-[100%] z-20"></div>
-    </section>
-  )
-}
 
 export default Index;
