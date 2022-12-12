@@ -6,7 +6,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Welcome to webapp!</title>
+        <title>Proboard</title>
       </Head>
       <main className="min-h-screen">
         <Component {...pageProps} />
