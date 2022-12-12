@@ -6,7 +6,8 @@ Proboard means project board. This is where I showcase my projects and ideas. I 
 
 ## Collaboration
 
-You can contact me thru my linkedin @rhenmarkcallado
+You can contact me thru my linkedin account [@rhenmarkcallado](https://www.linkedin.com/in/rhenmarkcallado/)
+
 <br/>
 
 ## About me
