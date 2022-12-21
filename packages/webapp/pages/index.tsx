@@ -4,6 +4,7 @@ import { externalLink } from '../common/AppLinks';
 import Particles from 'react-particles';
 import React, { useCallback } from 'react';
 import { loadFull } from 'tsparticles';
+import { ProjectList, ProjectType } from '../common/ProjectList';
 
 const ParticleBackground = () => {
   const particlesInit = useCallback(async (engine) => {
@@ -98,32 +99,34 @@ const ProjectsSection = () => {
         </div>
 
         <div className="mt-8 grid md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {Array(6)
-            .fill('e')
-            .map((_, index) => (
+          {ProjectList
+            .map((project: ProjectType, index: number) => (
               <Link href={`/project/${index}`} key={index}>
                 <div
-                  className="w-full h-[220px] md:h-[320px] rounded-sm shadow-sm bg-slate-200 grid p-4"
+                  className="w-full h-[280px] md:h-[320px] rounded-sm shadow-sm bg-slate-200 grid grid-rows-[25%_1fr_10%_15%] p-4 hover:bg-black hover:text-white transition-colors"
                 >
                   <div className='grid grid-flow-col justify-between w-full items-start'>
                     <div className='h-12 w-12 shadow-sm rounded-md p-2 bg-white grid place-items-center'>
-                      <span className='text-3xl text-bold'>A</span>
+                      <span className='text-3xl text-bold hover:text-black text-black'>{project.name.charAt(0)}</span>
                     </div>
                     <div className='grid items-start'>
                       <HorizontalDots width={24} />
                     </div>
                   </div>
                   <div>
-                    <h4 className='text-lg'>Project Name</h4>
+                    <h4 className='text-lg'>{project.name}</h4>
                     <ul className='text-sm list-disc pl-4 opacity-90'>
-                      <li>Description 1</li>
-                      <li>Description 2</li>
+                      {
+                        project.description.map((description: string, index: number) => (
+                          <li key={index}>{description}</li>
+                        ))
+                      }
                     </ul>
                   </div>
                   <div className='grid place-items-center'>
                     <div className="relative pt-1 w-full">
                       <div className="overflow-hidden h-1 mb-4 text-xs flex rounded bg-slate-400">
-                        <div style={{ width: "30%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-slate-500"></div>
+                        <div style={{ width: project.completionPercent }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-slate-500"></div>
                       </div>
                     </div>
                   </div>
