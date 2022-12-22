@@ -1,9 +1,10 @@
-import { LightModeIcon, DarkModeIcon, GithubIcon, Button } from '@proboard/ui';
+import { LightModeIcon, DarkModeIcon, GithubIcon, Button, HorizontalDots, Image } from '@proboard/ui';
 import Link from 'next/link';
 import { externalLink } from '../common/AppLinks';
 import Particles from 'react-particles';
 import React, { useCallback } from 'react';
 import { loadFull } from 'tsparticles';
+import { ProjectList, ProjectType } from '../common/ProjectList';
 
 const ParticleBackground = () => {
   const particlesInit = useCallback(async (engine) => {
@@ -78,8 +79,9 @@ export function Index() {
 }
 
 const ProjectsSection = () => {
+  const today = new Date()
   return (
-    <section className="w-full py-10 md:py-20 min-h-[400px] relative z-10">
+    <section className="w-full py-10 md:px-10 md:py-20 min-h-[400px] relative z-10">
       <div className="max-w-7xl m-auto px-4 md:px-0">
         <div className="grid grid-flow-rows md:grid-flow-col justify-between items-center overflow-hidden gap-4">
           <h4 className="text-4xl">Projects</h4>
@@ -96,16 +98,48 @@ const ProjectsSection = () => {
           </div>
         </div>
 
-        <div className="mt-8 grid md:grid-cols-3 gap-4">
-          {Array(6)
-            .fill('e')
-            .map((_, index) => (
-              <div
-                className="w-full h-[220px] md:h-[320px] rounded-sm shadow-sm bg-slate-200 grid place-items-center"
-                key={index}
-              >
-                <h4 className="text-2xl text-slate-500">Work in Progress...</h4>
-              </div>
+        <div className="mt-8 grid md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {ProjectList
+            .map((project: ProjectType, index: number) => (
+              <Link href={`/project/${index}`} key={index}>
+                <div
+                  className="w-full h-[280px] md:h-[320px] rounded-sm shadow-sm bg-slate-200 grid grid-rows-[25%_1fr_10%_15%] p-4 hover:bg-black hover:text-white transition-colors"
+                >
+                  <div className='grid grid-flow-col justify-between w-full items-start'>
+                    <div className='h-12 w-12 shadow-sm rounded-md p-2 bg-white grid place-items-center'>
+                      <span className='text-3xl text-bold hover:text-black text-black'>{project.name.charAt(0)}</span>
+                    </div>
+                    <div className='grid items-start'>
+                      <HorizontalDots width={24} />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className='text-lg'>{project.name}</h4>
+                    <ul className='text-sm list-disc pl-4 opacity-90'>
+                      {
+                        project.description.map((description: string, index: number) => (
+                          <li key={index}>{description}</li>
+                        ))
+                      }
+                    </ul>
+                  </div>
+                  <div className='grid place-items-center'>
+                    <div className="relative pt-1 w-full">
+                      <div className="overflow-hidden h-1 mb-4 text-xs flex rounded bg-slate-400">
+                        <div style={{ width: project.completionPercent }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-slate-500"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-[auto_auto] justify-between items-center">
+                    <div>
+                      {today.toLocaleDateString()}
+                    </div>
+                    <div>
+                      <Image />
+                    </div>
+                  </div>
+                </div>
+              </Link>
             ))}
         </div>
       </div>
