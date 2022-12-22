@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start:webapp": "nx run webapp:serve:development --port=3000"
+    "start:webapp": "yarn nx serve webapp --configuration=development --port=3000"
   },
   "private": true,
   "dependencies": {
