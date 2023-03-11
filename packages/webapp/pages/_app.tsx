@@ -1,10 +1,11 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { useLayoutEffect } from 'react';
+import React from 'react';
+import { useEffect } from 'react';
 import './styles.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (window && typeof window === "object") {
       window.scrollTo(0, 0)
     }
@@ -14,6 +15,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Proboard</title>
+        <link rel="shortcut icon" href="/images/logo/proboard-logo.svg" />
       </Head>
       <main className="min-h-screen">
         <Component {...pageProps} />

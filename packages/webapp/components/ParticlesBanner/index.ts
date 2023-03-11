@@ -1,0 +1,1 @@
+export {default as ParticlesBanner} from './ParticlesBanner'
