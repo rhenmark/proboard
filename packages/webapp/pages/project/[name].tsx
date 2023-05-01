@@ -12,6 +12,7 @@ const Project = ({ project, loading }) => {
         setMounted(true)
     }, [])
 
+
     if (typeof window === "undefined" || !mounted || loading || !project) {
         return <div>Loading...</div>
     }
