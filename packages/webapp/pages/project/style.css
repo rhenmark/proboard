@@ -1,0 +1,7 @@
+               
+ ol {
+    @apply list-disc
+}
+.description > p {
+    @apply mt-3 mb-3
+}

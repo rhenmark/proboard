@@ -12,6 +12,18 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+  images: {
+    domains: ['images.unsplash.com'],
+  },
+  env: {
+    CONTENTFUL_SPACE: process.env.CONTENTFUL_SPACE,
+    CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN
+  },
+  compiler: {
+    styledComponents: {
+      ssr: false
+    }
+  }
 };
 
 module.exports = withNx(nextConfig);
