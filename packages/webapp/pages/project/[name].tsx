@@ -52,7 +52,7 @@ export const getServerSideProps = async (context) => {
     const { data, loading, error = null } = await client.query({
         query: GET_PROJECT_INFO,
         variables: {
-            id: `${context?.req?.query?.id}`,
+            id: `${context?.query?.id}`,
         },
     });
 

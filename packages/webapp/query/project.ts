@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const GET_PROJECT_INFO = gql`
-query getProject($id: String!) {
+query GetProject($id: String!) {
     proboard(id: $id) {
         title
         developer {
