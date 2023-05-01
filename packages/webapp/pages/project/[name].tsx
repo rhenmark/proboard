@@ -12,7 +12,8 @@ const Project = ({ project, loading }) => {
         setMounted(true)
     }, [])
 
-    if (typeof window === "undefined" || !mounted || loading) {
+
+    if (typeof window === "undefined" || !mounted || loading || !project) {
         return <div>Loading...</div>
     }
 
@@ -50,7 +51,7 @@ export const getServerSideProps = async (context) => {
     const { data, loading } = await client.query({
         query: GET_PROJECT_INFO,
         variables: {
-            id: context.req.query.id,
+            id: context?.req?.query?.id,
         },
     });
 
