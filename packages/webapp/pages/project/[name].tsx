@@ -12,8 +12,6 @@ const Project = ({ project, loading, error }) => {
         setMounted(true)
     }, [])
 
-    console.log("errors ==>", error)
-
     if (typeof window === "undefined" || !mounted || loading || !project || error !== null) {
         return <div>Loading...</div>
     }
