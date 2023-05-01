@@ -5,12 +5,14 @@ import { GET_PROJECT_INFO } from '../../query/project';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import _JSXStyle from 'styled-jsx/style'
 
-const Project = ({ project, loading }) => {
+const Project = ({ project, loading, errors }) => {
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
         setMounted(true)
     }, [])
+
+    console.log("errors ==>", errors)
 
     if (typeof window === "undefined" || !mounted || loading || !project) {
         return <div>Loading...</div>
@@ -47,7 +49,7 @@ const Project = ({ project, loading }) => {
 };
 
 export const getServerSideProps = async (context) => {
-    const { data, loading } = await client.query({
+    const { data, loading, errors } = await client.query({
         query: GET_PROJECT_INFO,
         variables: {
             id: context?.req?.query?.id,
@@ -58,7 +60,8 @@ export const getServerSideProps = async (context) => {
     return {
         props: {
             project: data?.proboard,
-            loading
+            loading,
+            errors
         },
     };
 };
