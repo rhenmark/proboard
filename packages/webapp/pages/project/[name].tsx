@@ -7,10 +7,15 @@ import _JSXStyle from 'styled-jsx/style'
 
 const Project = ({ project, loading, error }) => {
     const [mounted, setMounted] = useState(false)
+    // workaround
+    const [asset, setAsset] = useState(undefined)
 
     useEffect(() => {
         setMounted(true)
     }, [])
+    useEffect(() => {
+        setAsset(project?.assetsCollection?.items[0])
+    }, [project])
 
     if (typeof window === "undefined" || !mounted || loading || !project) {
         return <div>Loading...</div>
@@ -20,7 +25,15 @@ const Project = ({ project, loading, error }) => {
         <Wrapper>
             <div className="h-full w-screen grid grid-flow-row md:grid-flow-col md:grid-cols-[40%_1fr] px-4 pt-8 lg:container mx-auto">
                 <div className="w-full grid place-items-center">
-                    <div className="h-[440px] w-full mb-8 md:mb-0 md:w-[80%] lg:w-[60%] bg-slate-400"></div>
+                    <div className="h-[440px] w-full mb-8 md:mb-0 md:w-[80%] lg:w-[60%] bg-slate-400 relative">
+                        {
+                            mounted && asset && <video controls muted autoPlay className="w-full h-full object-cover">
+                                <source src={asset?.url} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        }
+
+                    </div>
                 </div>
                 <div className="w-full h-full grid items-center gap-4 px-8 md:px-0">
                     <h2 className="text-3xl font-bold">{project.title}</h2>

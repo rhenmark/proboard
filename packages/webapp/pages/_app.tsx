@@ -15,7 +15,8 @@ function CustomApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Proboard</title>
-        <link rel="shortcut icon" href="/images/logo/proboard-logo.svg" />
+        <link rel="shortcut icon" href="/images/logo/proboard-logo.png" />
+        <meta name="theme-color" content="red" />
       </Head>
       <main className="min-h-screen">
         <Component {...pageProps} />

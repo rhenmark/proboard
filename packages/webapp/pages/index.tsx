@@ -65,6 +65,7 @@ const ProjectsSection = ({ projects }) => {
                     developer: item.developer?.username,
                     title: item.title,
                     description: item.shortDescription,
+                    imageUrl: item?.imagePreview?.url
                   }}
                 />
               </Link>
