@@ -9,6 +9,9 @@ query {
       developer {
         username
       }
+      imagePreview {
+        url
+      }
       type
       slug
       sys {

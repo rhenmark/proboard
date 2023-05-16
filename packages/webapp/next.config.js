@@ -13,7 +13,7 @@ const nextConfig = {
     svgr: false,
   },
   images: {
-    domains: ['images.unsplash.com'],
+    domains: ['images.unsplash.com', 'images.ctfassets.net'],
   },
   env: {
     CONTENTFUL_SPACE: process.env.CONTENTFUL_SPACE,

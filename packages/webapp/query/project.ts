@@ -10,6 +10,11 @@ query GetProject($id: String!) {
         description {
             json
         }
+        assetsCollection {
+            items {
+                url
+            }
+        }
     }
 }
 `
