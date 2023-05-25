@@ -17,7 +17,8 @@ const nextConfig = {
   },
   env: {
     CONTENTFUL_SPACE: process.env.CONTENTFUL_SPACE,
-    CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN
+    CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
+    IS_DEV: process.env.NODE_ENV
   },
   compiler: {
     styledComponents: {

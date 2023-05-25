@@ -1,20 +1,22 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const GET_PROJECT_INFO = gql`
-query GetProject($id: String!) {
-    proboard(id: $id) {
+  query GetProject($slug: String!) {
+    proboardCollection(where: { slug: $slug }) {
+      items {
         title
         developer {
-            username
+          username
         }
         description {
-            json
+          json
         }
         assetsCollection {
-            items {
-                url
-            }
+          items {
+            url
+          }
         }
+      }
     }
-}
-`
+  }
+`;

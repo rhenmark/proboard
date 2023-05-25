@@ -4,6 +4,7 @@ import client from '../../utils/apollo-client';
 import { GET_PROJECT_INFO } from '../../query/project';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import _JSXStyle from 'styled-jsx/style'
+import Developer from '../../components/Developer/Developer';
 
 const Project = ({ project, loading, error }) => {
     const [mounted, setMounted] = useState(false)
@@ -37,7 +38,7 @@ const Project = ({ project, loading, error }) => {
                 </div>
                 <div className="w-full h-full grid items-center gap-4 px-8 md:px-0">
                     <h2 className="text-3xl font-bold">{project.title}</h2>
-                    <p className="text-xl">by: {project.developer?.username}</p>
+                    <p className="text-xl">by: <Developer developer={project.developer} /></p>
                     <div className="w-full md:w-[75%] description">
                         {documentToReactComponents(project.description?.json)}
                     </div>
@@ -63,13 +64,13 @@ export const getServerSideProps = async (context) => {
     const { data, loading, error = null } = await client.query({
         query: GET_PROJECT_INFO,
         variables: {
-            id: `${context?.query?.id}`,
+            slug: context?.query?.slug,
         },
     });
 
     return {
         props: {
-            project: data?.proboard,
+            project: data?.proboardCollection?.items[0] || null,
             loading,
             error
         },
