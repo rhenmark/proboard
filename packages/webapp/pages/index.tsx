@@ -49,20 +49,13 @@ const ProjectsSection = ({ projects }) => {
                   pathname: '/project/[slug]',
                   query: {
                     slug: item.slug,
-                    id: item?.sys?.id,
                   },
-                }}
-                as={{
-                  pathname: `/project/${item.slug}-${item?.sys?.id}`,
-                  query: {
-                    id: item?.sys?.id,
-                  }
                 }}
                 key={`${index}`}
               >
                 <CardCollection
                   project={{
-                    developer: item.developer?.username,
+                    developer: item.developer,
                     title: item.title,
                     description: item.shortDescription,
                     imageUrl: item?.imagePreview?.url

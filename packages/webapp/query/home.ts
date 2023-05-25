@@ -8,6 +8,9 @@ query {
       shortDescription
       developer {
         username
+        profileImage {
+            url
+        }
       }
       imagePreview {
         url

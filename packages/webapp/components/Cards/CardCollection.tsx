@@ -1,10 +1,17 @@
 import Image from "next/image"
 import React from "react"
+import { ProfileAvatar } from "../../pages/developer/[developer]"
+import Developer from "../Developer/Developer"
 
 interface CardCollectionProp {
     logo?: string | React.ReactNode
     project: {
-        developer: string
+        developer?: {
+            username?: string
+            profileImage?: {
+                url?: string
+            }
+        }
         title: string
         description: string
         links?: [unknown]
@@ -13,15 +20,6 @@ interface CardCollectionProp {
     categories?: [string]
 }
 
-const RoundedLogo = (props: Pick<CardCollectionProp, "logo">) => {
-    const logo = typeof props.logo === "string" ? props.logo.charAt(0) : props.logo
-
-    return (
-        <div className="rounded-full bg-black text-white h-10 w-10 grid place-items-center">
-            {logo}
-        </div>
-    )
-}
 
 const mockImg = "https://images.unsplash.com/photo-1551650975-87deedd944c3"
 
@@ -36,15 +34,15 @@ const CardCollection = (props: CardCollectionProp) => (
                 <hr className="w-full my-2 border-slate-200" />
             </div>
             <div className="grid grid-cols-[auto_1fr] gap-4 items-center pb-4">
-                <RoundedLogo logo={props.logo} />
-                <span>{props.project.developer}</span>
+                <ProfileAvatar url={props.project?.developer?.profileImage?.url} small />
+                <Developer developer={props.project.developer} />
+                {/* <span>{props.project.developer?.username}</span> */}
             </div>
             <div className="box-border overflow-hidden line-clamp-2">
                 <span className="text-sm font-light" title={props.project.description}>{props.project.description}</span>
             </div>
         </div>
     </div>
-
 )
 
 export default CardCollection

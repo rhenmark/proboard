@@ -22,7 +22,11 @@ function CustomApp({ Component, pageProps }: AppProps) {
       </Head>
       <main className="min-h-screen">
         <Component {...pageProps} />
-        <Analytics />
+        {
+          process.env.NODE_ENV !== "development" && (
+            <Analytics />
+          )
+        }
       </main>
     </>
   );
