@@ -1,6 +1,8 @@
 import React from "react"
-import { PageHeader } from "../PageHeader"
-import { ParticlesBanner } from "../ParticlesBanner"
+import dynamic from "next/dynamic"
+
+const PageHeader = dynamic(() => import("../PageHeader/PageHeader"), { ssr: false })
+const ParticlesBanner = dynamic(() => import("../ParticlesBanner/ParticlesBanner"), { ssr: false })
 
 const PageBanner = () => (
     <div className="w-screen h-[60vh] bg-black relative">

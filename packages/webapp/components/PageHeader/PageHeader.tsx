@@ -49,8 +49,8 @@ const PageHeader = (props: IPageHeader) => {
                 }
 
                 <Link href="/auth">
-                    <Button className="hover:bg-slate-500 p-2 rounded-full">
-                        <span className="text-white">Login </span>
+                    <Button className="hover:bg-slate-800 p-2 px-4 rounded-full">
+                        <span className="text-white">Login</span>
                     </Button>
                 </Link>
             </div>

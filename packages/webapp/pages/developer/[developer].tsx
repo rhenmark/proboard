@@ -1,11 +1,14 @@
 import React from 'react';
-import { Wrapper } from '../../components/Wrapper';
 import Link from 'next/link';
 import { GET_DEVELOPER_INFO } from '../../query/developer';
 import client from '../../utils/apollo-client';
 import Image from 'next/image';
 import { Button, OpenIcon } from '@proboard/ui';
+import dynamic from 'next/dynamic';
 
+const Wrapper = dynamic(() => import("../../components/Wrapper/Wrapper"), {
+    ssr: false
+})
 
 export default function DeveloperPage(props) {
     const { developer, loading, error } = props;

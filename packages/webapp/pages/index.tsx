@@ -1,10 +1,20 @@
 import { Button } from '@proboard/ui';
 import React from 'react';
-import { CardCollection } from '../components/Cards';
-import { PageBanner } from '../components/PageBanner';
 import client from '../utils/apollo-client';
 import { GET_PROJECTS_LIST } from '../query/home';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+const PageBanner = dynamic(
+  () => import('../components/PageBanner/PageBanner'),
+  { ssr: false }
+);
+const CardCollection = dynamic(
+  () => import('../components/Cards/CardCollection'),
+  {
+    ssr: false,
+  }
+);
 export function Index({ projects }) {
   return (
     <>
@@ -23,6 +33,10 @@ Index.getInitialProps = async () => {
 };
 
 const ProjectsSection = ({ projects }) => {
+  if (!projects) {
+    return null;
+  }
+
   return (
     <section className="w-full py-10 md:px-10 md:py-20 min-h-[400px] relative z-10">
       <div className="max-w-7xl m-auto px-4 md:px-0">
@@ -58,7 +72,7 @@ const ProjectsSection = ({ projects }) => {
                     developer: item.developer,
                     title: item.title,
                     description: item.shortDescription,
-                    imageUrl: item?.imagePreview?.url
+                    imageUrl: item?.imagePreview?.url,
                   }}
                 />
               </Link>
