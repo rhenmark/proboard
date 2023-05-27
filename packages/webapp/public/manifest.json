@@ -1,0 +1,21 @@
+{
+  "short_name": "Proboard",
+  "name": "Proboard",
+  "icons": [
+    {
+      "src": "/images/logo/logo-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/logo/logo-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "description": "Your project board collection",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#88AF98",
+  "background_color": "#88AF98"
+}

@@ -1,7 +1,9 @@
+import dynamic from "next/dynamic";
 import React from "react";
 import { useCallback } from "react";
-import Particles from "react-particles";
 import { loadFull } from "tsparticles";
+
+const Particles = dynamic(() => import("react-particles"), { ssr: false })
 
 const ParticlesBanner = () => {
     const particlesInit = useCallback(async (engine) => {
