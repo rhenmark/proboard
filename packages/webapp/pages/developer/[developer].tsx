@@ -18,7 +18,7 @@ export default function DeveloperPage(props) {
             {loading || error ? (
                 <div>loading</div>
             ) : (
-                <div className="h-full w-full px-4 pt-8 md:max-w-3xl md:container mx-auto ">
+                <div className="h-full w-full px-4 pt-8 md:max-w-4xl md:container mx-auto ">
                     <div className=" md:bg-slate-100">
                         <div className=" grid grid-flow-rows md:grid-cols-[3fr_7fr] columns-2 gap-10 items-center overflow-x-hidden py-4">
                             <ProfileAvatar url={developer?.profileImage?.url} />
@@ -30,7 +30,8 @@ export default function DeveloperPage(props) {
                                     </p>
                                     <SocialMedia items={developer?.socialMedia?.items} />
                                     <Certificates items={developer?.certificates?.items} />
-                                    <Skills items={developer?.skills?.list} />
+                                    <SectionList title="Skills" items={developer?.skills?.list} />
+                                    <SectionList title="Interests" items={developer?.interests?.list} />
                                 </div>
                             </div>
                         </div>
@@ -96,13 +97,13 @@ const SocialMedia = (props) => {
     );
 };
 
-const Skills = (props) => {
+const SectionList = (props) => {
     if (!props?.items) {
         return null;
     }
     return (
         <div className="mt-12 w-fill ">
-            <h2 className="mb-4">Skills</h2>
+            <h2 className="mb-4">{props.title}</h2>
             <div className="flex flex-row flex-wrap">
                 {props?.items.map((item) => (
                     <span

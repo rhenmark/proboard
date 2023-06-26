@@ -58,4 +58,8 @@ const PageHeader = (props: IPageHeader) => {
     );
 };
 
+export const PageHeaderSkeleton = () => (
+    <header className=' h-[80px] animate-pulse' />
+)
+
 export default PageHeader;

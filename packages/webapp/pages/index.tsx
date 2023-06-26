@@ -4,10 +4,11 @@ import client from '../utils/apollo-client';
 import { GET_PROJECTS_LIST } from '../query/home';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { PageBannerLoader } from '../components/PageBanner/PageBanner';
 
 const PageBanner = dynamic(
   () => import('../components/PageBanner/PageBanner'),
-  { ssr: false }
+  { ssr: false, loading: () => <PageBannerLoader /> }
 );
 const CardCollection = dynamic(
   () => import('../components/Cards/CardCollection'),
