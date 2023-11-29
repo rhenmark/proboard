@@ -1,18 +1,19 @@
 {
   "name": "proboard-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/proboard-ui/src",
   "projectType": "library",
   "tags": [],
   "targets": {
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["packages/proboard-ui/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "build": {
-      "executor": "@nrwl/rollup:rollup",
+      "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/proboard-ui",
@@ -20,7 +21,7 @@
         "project": "packages/proboard-ui/package.json",
         "entryFile": "packages/proboard-ui/src/index.ts",
         "external": ["react/jsx-runtime"],
-        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "rollupConfig": "@nx/react/plugins/bundle-rollup",
         "compiler": "babel",
         "assets": [
           {
@@ -32,7 +33,7 @@
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "packages/proboard-ui/jest.config.ts",

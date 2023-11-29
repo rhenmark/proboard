@@ -12,6 +12,7 @@ export const GET_DEVELOPER_INFO = gql`
             fileName
         }
         skills
+        interests
         socialMedia
         certificates
       }

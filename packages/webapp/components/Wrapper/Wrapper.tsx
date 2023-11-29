@@ -1,6 +1,10 @@
 import React, { PropsWithChildren } from 'react';
-import { PageHeader } from '../PageHeader';
+import dynamic from 'next/dynamic';
+import { PageHeaderSkeleton } from '../PageHeader/PageHeader';
 
+const PageHeader = dynamic(() => import("../PageHeader/PageHeader"), {
+    loading: () => <PageHeaderSkeleton />
+})
 const Wrapper = (props: PropsWithChildren) => {
     return (
         <div className="w-screen min-h-screen">

@@ -5,7 +5,7 @@ const PageHeader = dynamic(() => import("../PageHeader/PageHeader"), { ssr: fals
 const ParticlesBanner = dynamic(() => import("../ParticlesBanner/ParticlesBanner"), { ssr: false })
 
 const PageBanner = () => (
-    <div className="w-screen h-[60vh] bg-black relative">
+    <div className="w-screen min-h-[60vh] h-[60vh] bg-black relative">
         <div
             className="h-full grid grid-rows-[auto_1fr]"
             style={{ background: 'url(/images/header-background.svg)' }}
@@ -22,6 +22,10 @@ const PageBanner = () => (
         </div>
         <ParticlesBanner />
     </div>
+)
+
+export const PageBannerLoader = () => (
+    <div className="min-h-[60vh] h-[60vh] animate-pulse bg-black" />
 )
 
 export default PageBanner

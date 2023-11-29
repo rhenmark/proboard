@@ -18,19 +18,20 @@ export default function DeveloperPage(props) {
             {loading || error ? (
                 <div>loading</div>
             ) : (
-                <div className="h-full w-full px-4 pt-8 md:max-w-3xl md:container mx-auto ">
-                    <div className=" md:bg-slate-100">
-                        <div className=" grid grid-flow-rows md:grid-cols-[3fr_7fr] columns-2 gap-10 items-center overflow-x-hidden py-4">
-                            <ProfileAvatar url={developer?.profileImage?.url} />
+                <div className="h-full w-full px-4 pt-8 md:max-w-[1280px] md:container mx-auto ">
+                    <div className="">
+                        <div className=" grid grid-flow-rows md:grid-cols-[30%_70%] columns-2 gap-10 items-center overflow-x-hidden py-4">
+                            <ProfileAvatar url={developer?.profileImage?.url} className="!h-60 !w-60" />
                             <div className="h-full w-full px-4 flex flex-col justify-between">
                                 <div className="flex flex-col">
-                                    <h2 className="text-3xl">{developer.username}</h2>
-                                    <p className="text-md text-slate-800 font-thin mb-2">
+                                    <h2 className="text-3xl text-center md:text-left">@{developer.username}</h2>
+                                    <p className="text-md text-slate-800 font-thin mb-2 text-center md:text-left">
                                         {developer.currentPosition}
                                     </p>
                                     <SocialMedia items={developer?.socialMedia?.items} />
                                     <Certificates items={developer?.certificates?.items} />
-                                    <Skills items={developer?.skills?.list} />
+                                    <SectionList title="Skills" items={developer?.skills?.list} />
+                                    <SectionList title="Interests" items={developer?.interests?.list} />
                                 </div>
                             </div>
                         </div>
@@ -42,7 +43,7 @@ export default function DeveloperPage(props) {
 }
 
 export const ProfileAvatar = (props) => {
-    let classNames = "h-32 w-32 rounded-full bg-black grid place-self-center md:place-self-end md:self-start relative"
+    let classNames = `h-32 w-32 rounded-full bg-black grid place-self-center md:place-self-end md:self-start relative  ${props?.className}`
     if (props.small) {
         classNames = `!h-10 !w-10 ${classNames}`
     }
@@ -86,23 +87,26 @@ export const getServerSideProps = async (context) => {
 
 const SocialMedia = (props) => {
     return (
-        <div className="grid grid-flow-col gap-2 justify-start">
+        <div className="grid grid-flow-col gap-4 mt-2 justify-center md:justify-start">
             {props?.items.map((item, i) => (
-                <Link href={item.url} key={i} rel="noopener noreferrer" target="_blank" >
-                    <span>{item.name}</span>
+                <Link href={item.url} key={i} rel="noopener noreferrer" target="_blank" className='flex items-center flex-row gap-1'>
+                    <span className="material-symbols-outlined text-[16px]">
+                        link
+                    </span>
+                    <span className='text-lg'>{item.name}</span>
                 </Link>
             ))}
         </div>
     );
 };
 
-const Skills = (props) => {
+const SectionList = (props) => {
     if (!props?.items) {
         return null;
     }
     return (
         <div className="mt-12 w-fill ">
-            <h2 className="mb-4">Skills</h2>
+            <h2 className="mb-4">{props.title}</h2>
             <div className="flex flex-row flex-wrap">
                 {props?.items.map((item) => (
                     <span

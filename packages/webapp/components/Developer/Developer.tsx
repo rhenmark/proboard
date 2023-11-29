@@ -26,7 +26,12 @@ export function DeveloperRouteLink(
 export default function Developer(props: DeveloperProps) {
     return (
         <DeveloperRouteLink developer={props.developer}>
-            {props.developer.username}
+            <div className='flex flex-row gap-1'>
+                <span className="material-symbols-outlined">
+                    person
+                </span>
+                {`@${props.developer.username}`}
+            </div>
         </DeveloperRouteLink>
     );
 }

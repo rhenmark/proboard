@@ -14,8 +14,10 @@ export const GET_PROJECT_INFO = gql`
         assetsCollection {
           items {
             url
+            contentType
           }
         }
+        links
       }
     }
   }
