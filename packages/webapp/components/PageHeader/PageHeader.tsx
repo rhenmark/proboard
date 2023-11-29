@@ -18,15 +18,15 @@ const SHOW_NAV_ITEMS = false
 const PageHeader = (props: IPageHeader) => {
     return (
         <header
-            className={`grid h-[80px] grid-flow-col space-between items-center px-4 md:px-10 gap-2 relative z-10 ${props.invert ? 'bg-zinc-900' : ''
+            className={`grid h-[80px] grid-flow-col space-between items-center px-4 md:px-10 gap-2 relative z-10 ${props.invert ? 'border border-[#efefef]' : ''
                 }`}
         >
             <div className="h-full grid items-center">
                 {!props.hideLogo && (
                     <Link href="/">
-                        <span className="text-white text-2xl flex flex-row gap-2 items-center">
-                            <Image src="/images/logo/proboard-logo.png" alt="logo" height={40} width={40} />
-                            ProBoard</span>
+                        <span className="text-black text-2xl font-semi flex flex-row gap-2 items-center">
+                            <Image src="/images/logo/proboard-logo.png" alt="logo" height={32} width={32} />
+                            roboard</span>
                     </Link>
                 )}
             </div>
@@ -49,8 +49,8 @@ const PageHeader = (props: IPageHeader) => {
                 }
 
                 <Link href="/auth">
-                    <Button className="hover:bg-slate-800 p-2 px-4 rounded-full">
-                        <span className="text-white">Login</span>
+                    <Button className="hover:bg-green-200 p-2 px-4 rounded-full">
+                        <span className="text-black">Login</span>
                     </Button>
                 </Link>
             </div>
@@ -59,7 +59,7 @@ const PageHeader = (props: IPageHeader) => {
 };
 
 export const PageHeaderSkeleton = () => (
-    <header className=' h-[80px] animate-pulse' />
+    <header className=' h-[40px] animate-pulse' />
 )
 
 export default PageHeader;

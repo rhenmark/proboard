@@ -3,48 +3,106 @@ import { Wrapper } from '../../components/Wrapper';
 import client from '../../utils/apollo-client';
 import { GET_PROJECT_INFO } from '../../query/project';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import _JSXStyle from 'styled-jsx/style'
+import _JSXStyle from 'styled-jsx/style';
 import Developer from '../../components/Developer/Developer';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Project = ({ project, loading, error }) => {
-    const [mounted, setMounted] = useState(false)
+    const [mounted, setMounted] = useState(false);
     // workaround
-    const [asset, setAsset] = useState(undefined)
+    const [asset, setAsset] = useState(undefined);
 
     useEffect(() => {
-        setMounted(true)
-    }, [])
+        setMounted(true);
+    }, []);
     useEffect(() => {
-        setAsset(project?.assetsCollection?.items[0])
-    }, [project])
+        setAsset(project?.assetsCollection?.items[0]);
+    }, [project]);
 
-    if (typeof window === "undefined" || !mounted || loading || !project) {
-        return <div>Loading...</div>
+    if (typeof window === 'undefined' || !mounted || loading || !project) {
+        return <div>Loading...</div>;
     }
 
     return (
         <Wrapper>
-            <div className="h-full w-screen grid grid-flow-row md:grid-flow-col md:grid-cols-[40%_1fr] px-4 pt-8 lg:container mx-auto">
-                <div className="w-full grid place-items-center">
-                    <div className="h-[440px] w-full mb-8 md:mb-0 md:w-[80%] lg:w-[60%] bg-slate-400 relative">
-                        {
-                            mounted && asset && <video controls muted autoPlay className="w-full h-full object-cover">
-                                <source src={asset?.url} type="video/mp4" />
-                                Your browser does not support the video tag.
-                            </video>
-                        }
-
-                    </div>
+            <div className="max-w-[1280px] m-auto pt-8 pb-32">
+                <div className="mb-4 px-4 md:px-0">
+                    <h2 className="text-3xl">{project.title}</h2>
+                    <p className="text-md">
+                        <Developer developer={project.developer} />
+                    </p>
                 </div>
-                <div className="w-full h-full grid items-center gap-4 px-8 md:px-0">
-                    <h2 className="text-3xl font-bold">{project.title}</h2>
-                    <p className="text-xl">by: <Developer developer={project.developer} /></p>
-                    <div className="w-full md:w-[75%] description">
-                        {documentToReactComponents(project.description?.json)}
+                <div className="h-full w-screen grid grid-flow-row md:grid-flow-col md:grid-cols-[1fr_40%] md:gap-10 px-4 md:px-0 lg:container mx-auto">
+                    <div className="w-full">
+                        <div className="w-full mb-8 md:mb-0">
+                            {mounted && asset && asset?.contentType.includes('video') && (
+                                <video
+                                    controls
+                                    muted
+                                    autoPlay
+                                    className="w-full h-full object-cover"
+                                >
+                                    <source src={asset?.url} type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            )}
+                            {mounted && asset && asset?.contentType.includes('image') && (
+                                <Image width={800} height={400} alt={''} src={asset?.url} />
+                            )}
+                            <div className="mt-4">
+                                <ul className="list-none flex flex-row gap-4">
+                                    {project?.links?.website && (
+                                        <li>
+                                            <Link
+                                                href={project?.links?.website}
+                                                passHref
+                                                legacyBehavior
+                                            >
+                                                <a
+                                                    href={project?.links?.website}
+                                                    target="_blank"
+                                                    className="flex items-center gap-2"
+                                                >
+                                                    <span className="material-symbols-outlined">
+                                                        globe
+                                                    </span>{' '}
+                                                    Website
+                                                </a>
+                                            </Link>
+                                        </li>
+                                    )}
+                                    {project?.links?.github && (
+                                        <li>
+                                            <Link
+                                                href={project?.links?.github}
+                                                passHref
+                                                legacyBehavior
+                                            >
+                                                <a
+                                                    href={project?.links?.github}
+                                                    target="_blank"
+                                                    className="flex items-center gap-2"
+                                                >
+                                                    <span className="material-symbols-outlined">
+                                                        code
+                                                    </span>
+                                                    Github{' '}
+                                                </a>
+                                            </Link>
+                                        </li>
+                                    )}
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <_JSXStyle jsx>
-                    {`
+                    <div className="w-full h-full md:px-0">
+                        <div className="w-full md:w-[75%] description font-light">
+                            {documentToReactComponents(project.description?.json)}
+                        </div>
+                    </div>
+                    <_JSXStyle jsx>
+                        {`
                     ol {
                         list-style-type: disc;
                         padding-inline-start: 20px;
@@ -54,14 +112,19 @@ const Project = ({ project, loading, error }) => {
                         margin-bottom: 14px;
                     }
                 `}
-                </_JSXStyle>
+                    </_JSXStyle>
+                </div>
             </div>
         </Wrapper>
     );
 };
 
 export const getServerSideProps = async (context) => {
-    const { data, loading, error = null } = await client.query({
+    const {
+        data,
+        loading,
+        error = null,
+    } = await client.query({
         query: GET_PROJECT_INFO,
         variables: {
             slug: context?.query?.slug,
@@ -72,7 +135,7 @@ export const getServerSideProps = async (context) => {
         props: {
             project: data?.proboardCollection?.items[0] || null,
             loading,
-            error
+            error,
         },
     };
 };
