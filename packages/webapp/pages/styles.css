@@ -1,6 +1,7 @@
 @tailwind components;
 @tailwind base;
 @tailwind utilities;
+
 html {
   -webkit-text-size-adjust: 100%;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
@@ -18,4 +19,9 @@ body {
 
 .auth_container {
   height: calc(100vh - 80px);
+}
+
+.list-decimal {
+  list-style: decimal;
+  list-style-position: inside;
 }

@@ -1,12 +1,13 @@
 import React, { PropsWithChildren } from 'react';
 import RouterLink, {
     PagesPath,
-} from '../RouterLink/RouterLink';
+} from '../router-link/RouterLink';
 
 interface DeveloperProps {
     developer: {
         username: string;
     };
+    preview?: boolean
 }
 type DeveloperLinkProps = DeveloperProps;
 
@@ -26,11 +27,8 @@ export function DeveloperRouteLink(
 export default function Developer(props: DeveloperProps) {
     return (
         <DeveloperRouteLink developer={props.developer}>
-            <div className='flex flex-row gap-1'>
-                <span className="material-symbols-outlined">
-                    person
-                </span>
-                {`@${props.developer.username}`}
+            <div className={`flex flex-row gap-1 ${props.preview ? 'justify-center mt-2' : ''}`}>
+                <span className='text-[12px]'>{`@${props.developer.username}`}</span>
             </div>
         </DeveloperRouteLink>
     );

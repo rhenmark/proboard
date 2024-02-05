@@ -5,9 +5,12 @@ import { useEffect } from 'react';
 import './styles.css';
 import { Analytics } from '@vercel/analytics/react';
 import { Poppins } from 'next/font/google'
+import Footer from '../components/footer/Footer';
+import PageHeader from '../components/page-header/PageHeader';
+import WelcomePrompt from '../components/welcome-prompt/WelcomePrompt';
 
 const poppins = Poppins({
-  weight: ['300', '400', '700'],
+  weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
 })
 
@@ -27,13 +30,16 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <meta name="theme-color" content="#88AF98" />
       </Head>
       <main className={`min-h-screen ${poppins.className}`}>
+        <PageHeader />
         <Component {...pageProps} />
         {
           process.env.NODE_ENV !== "development" && (
             <Analytics />
           )
         }
+        <Footer />
       </main>
+      <WelcomePrompt />
     </>
   );
 }

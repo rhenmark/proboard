@@ -11,7 +11,12 @@ module.exports = {
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#55B97E",
+        dark: "#040406"
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/line-clamp')

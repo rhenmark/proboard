@@ -22,5 +22,13 @@ query {
       }
     }
   }
+  developerCollection {
+    items {
+      username
+      profileImage { 
+          url
+      }
+    }
+  }
 }
 `

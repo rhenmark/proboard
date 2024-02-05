@@ -3,10 +3,10 @@ import { Wrapper } from '../../components/Wrapper';
 import client from '../../utils/apollo-client';
 import { GET_PROJECT_INFO } from '../../query/project';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import _JSXStyle from 'styled-jsx/style';
-import Developer from '../../components/Developer/Developer';
+import Developer from '../../components/developer/Developer';
 import Image from 'next/image';
 import Link from 'next/link';
+import { contentOptions } from '../../common/content-utils';
 
 const Project = ({ project, loading, error }) => {
     const [mounted, setMounted] = useState(false);
@@ -16,6 +16,7 @@ const Project = ({ project, loading, error }) => {
     useEffect(() => {
         setMounted(true);
     }, []);
+
     useEffect(() => {
         setAsset(project?.assetsCollection?.items[0]);
     }, [project]);
@@ -24,24 +25,31 @@ const Project = ({ project, loading, error }) => {
         return <div>Loading...</div>;
     }
 
+    console.log("project.description?.json ==>", project.description?.json)
+
     return (
         <Wrapper>
             <div className="max-w-[1280px] m-auto pt-8 pb-32">
                 <div className="mb-4 px-4 md:px-0">
-                    <h2 className="text-3xl">{project.title}</h2>
+                    <h2 className="text-3xl font-bold">{project.title}</h2>
                     <p className="text-md">
                         <Developer developer={project.developer} />
                     </p>
                 </div>
-                <div className="h-full w-screen grid grid-flow-row md:grid-flow-col md:grid-cols-[1fr_40%] md:gap-10 px-4 md:px-0 lg:container mx-auto">
+                <div className="h-full w-screen grid grid-flow-row md:grid-flow-col md:grid-cols-[1fr_45%] md:gap-10 px-4 md:px-0 lg:container mx-auto">
+                    <div className="w-full h-full md:px-0">
+                        <div className="w-full md:w-[75%] description font-light">
+                            {documentToReactComponents(project.description?.json, contentOptions)}
+                        </div>
+                    </div>
                     <div className="w-full">
-                        <div className="w-full mb-8 md:mb-0">
+                        <div className="w-full mb-8 md:mb-0 sticky top-36 ">
                             {mounted && asset && asset?.contentType.includes('video') && (
                                 <video
                                     controls
                                     muted
                                     autoPlay
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-[500px] object-cover"
                                 >
                                     <source src={asset?.url} type="video/mp4" />
                                     Your browser does not support the video tag.
@@ -82,7 +90,7 @@ const Project = ({ project, loading, error }) => {
                                                 <a
                                                     href={project?.links?.github}
                                                     target="_blank"
-                                                    className="flex items-center gap-2"
+                                                    className="flex items-center gap-2 hover:opacity-50 hover:scale-[1.1]"
                                                 >
                                                     <span className="material-symbols-outlined">
                                                         code
@@ -96,23 +104,6 @@ const Project = ({ project, loading, error }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full h-full md:px-0">
-                        <div className="w-full md:w-[75%] description font-light">
-                            {documentToReactComponents(project.description?.json)}
-                        </div>
-                    </div>
-                    <_JSXStyle jsx>
-                        {`
-                    ol {
-                        list-style-type: disc;
-                        padding-inline-start: 20px;
-                    }
-                    .description > p {
-                        margin-top: 14px;
-                        margin-bottom: 14px;
-                    }
-                `}
-                    </_JSXStyle>
                 </div>
             </div>
         </Wrapper>
