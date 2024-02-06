@@ -49,9 +49,10 @@ const Project = ({ project, loading, error }) => {
                                     controls
                                     muted
                                     autoPlay
-                                    className="w-full h-[500px] object-cover"
+                                    className="w-full h-[500px] object-cover object-left"
                                 >
                                     <source src={asset?.url} type="video/mp4" />
+                                    <source src={asset?.url} type="video/webm" />
                                     Your browser does not support the video tag.
                                 </video>
                             )}

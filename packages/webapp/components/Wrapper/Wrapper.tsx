@@ -9,7 +9,6 @@ interface WrapperProps {
 const AppWrapper = (props: PropsWithChildren<WrapperProps>) => {
     return (
         <div className="w-screen min-h-screen">
-            <PageHeader hideNav={props.hideNav} />
             <div className="h-full w-screen">{props.children}</div>
         </div>
     );
