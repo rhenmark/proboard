@@ -1,17 +1,26 @@
 import React, { PropsWithChildren } from 'react';
 import dynamic from 'next/dynamic';
-import { PageHeaderSkeleton } from '../PageHeader/PageHeader';
 
-const PageHeader = dynamic(() => import("../PageHeader/PageHeader"), {
-    loading: () => <PageHeaderSkeleton />
-})
-const Wrapper = (props: PropsWithChildren) => {
+const PageHeader = dynamic(() => import("../page-header/PageHeader"))
+
+interface WrapperProps {
+    hideNav?: boolean
+}
+const AppWrapper = (props: PropsWithChildren<WrapperProps>) => {
     return (
         <div className="w-screen min-h-screen">
-            <PageHeader invert />
             <div className="h-full w-screen">{props.children}</div>
         </div>
     );
 };
 
-export default Wrapper;
+
+export const ContentWrapper = (props: PropsWithChildren<{ className?: string }>) => {
+    return (
+        <div className={`md:max-w-7xl m-auto w-full h-full ${props.className}`}>
+            {props.children}
+        </div>
+    )
+}
+
+export default AppWrapper;

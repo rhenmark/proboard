@@ -1,102 +1,36 @@
-import { Button } from '@proboard/ui';
-import React, { useState } from 'react';
+import React from 'react';
 import client from '../utils/apollo-client';
 import { GET_PROJECTS_LIST } from '../query/home';
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { PageBannerLoader } from '../components/PageBanner/PageBanner';
+import HeroBanner from '../components/page-banner/PageBanner';
 
-const PageBanner = dynamic(
-  () => import('../components/PageBanner/PageBanner'),
-  { ssr: false, loading: () => <PageBannerLoader /> }
+const DeveloperSection = dynamic(
+  () => import('../components/developer-section/DeveloperSection')
 );
-const CardCollection = dynamic(
-  () => import('../components/Cards/CardCollection'),
-  {
-    ssr: false,
-  }
+const ProjectSection = dynamic(
+  () => import('../components/project-section/ProjectSection'),
 );
-export function Index({ projects }) {
+const DownloadBanner = dynamic(
+  () => import('../components/download-banner/'),
+);
+export function Index({ projects, developers }) {
   return (
-    <>
-      <PageBanner />
-      <ProjectsSection projects={projects} />
-    </>
+    <div>
+      <HeroBanner />
+      <ProjectSection projects={projects} />
+      <DeveloperSection developers={developers} />
+      <DownloadBanner />
+    </div >
   );
 }
 
 Index.getInitialProps = async () => {
   const { data } = await client.query({ query: GET_PROJECTS_LIST });
-
   return {
     projects: data?.proboardCollection?.items || [],
+    developers: data?.developerCollection?.items || [],
   };
 };
 
-enum FilterType {
-  ALL = 0,
-  MOBILE = 1,
-  WEB = 2,
-  BOTH = 3
-}
-
-const ProjectsSection = ({ projects }) => {
-  const [filter, setFilter] = useState<FilterType>(FilterType.ALL)
-  if (!projects) {
-    return null;
-  }
-
-  const handleTap = (type: FilterType) => {
-    setFilter(type)
-  }
-
-  return (
-    <section className="w-full py-10 md:px-10 md:py-20 min-h-[400px] relative z-10">
-      <div className="max-w-7xl m-auto px-4 md:px-0">
-        <div className="grid grid-flow-rows md:grid-flow-col justify-between items-center overflow-hidden gap-4">
-          <h4 className="text-4xl">Collections</h4>
-          <div className="grid grid-flow-col justify-end gap-2 md:gap-4">
-            <Button onClick={() => handleTap(0)} className={`rounded-full p-2 px-8 text-white hover:bg-black hover:text-white transition-colors ${filter === FilterType.ALL ? "bg-black" : "border-black border text-black"}`}>
-              All
-            </Button>
-            <Button onClick={() => handleTap(1)} className={`rounded-full p-2 px-8 text-white hover:bg-black hover:text-white transition-colors ${filter === FilterType.MOBILE ? "bg-black" : "border-black border text-black"}`}>
-              Mobile
-            </Button>
-            <Button onClick={() => handleTap(2)} className={`rounded-full p-2 px-8 text-white hover:bg-black hover:text-white transition-colors ${filter === FilterType.WEB ? "bg-black" : "border-black border text-black"}`}>
-              Web
-            </Button>
-          </div>
-        </div>
-
-        <div className="mt-8 grid md:grid-cols-3 lg:grid-cols-3 gap-8">
-          {projects?.filter((item) => {
-            return filter === 0 ? item.type : item.type === filter
-          }).map((item, index: number) => {
-            return (
-              <Link
-                href={{
-                  pathname: '/project/[slug]',
-                  query: {
-                    slug: item.slug,
-                  },
-                }}
-                key={`${index}`}
-              >
-                <CardCollection
-                  project={{
-                    developer: item.developer,
-                    title: item.title,
-                    description: item.shortDescription,
-                    imageUrl: item?.imagePreview?.url,
-                  }}
-                />
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-};
 
 export default Index;

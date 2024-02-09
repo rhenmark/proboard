@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Button, OpenIcon } from '@proboard/ui';
 import dynamic from 'next/dynamic';
 
-const Wrapper = dynamic(() => import("../../components/Wrapper/Wrapper"), {
+const Wrapper = dynamic(() => import("../../components/wrapper/Wrapper"), {
     ssr: false
 })
 
@@ -43,9 +43,9 @@ export default function DeveloperPage(props) {
 }
 
 export const ProfileAvatar = (props) => {
-    let classNames = `h-32 w-32 rounded-full bg-black grid place-self-center md:place-self-end md:self-start relative  ${props?.className}`
+    let classNames = `h-32 w-32 rounded-full bg-black grid place-self-center md:place-self-end md:self-start relative ${props?.className} hover:shadow-lg`
     if (props.small) {
-        classNames = `!h-10 !w-10 ${classNames}`
+        classNames = `!h-8 !w-8 ${classNames}`
     }
 
     if (!props?.url) {
