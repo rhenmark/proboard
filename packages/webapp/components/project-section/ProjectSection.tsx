@@ -63,7 +63,7 @@ export const ProjectsSection = ({ projects }) => {
                     </div>
                 </div>
 
-                <div className="mt-8 grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="mt-8 grid md:grid-cols-3 gap-6">
                     {projects
                         ?.filter((item: { type: FilterType; }) => {
                             return filter === 0 ? item.type : item.type === filter;

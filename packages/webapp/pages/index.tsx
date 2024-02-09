@@ -1,10 +1,8 @@
-import { Button } from '@proboard/ui';
-import React, { useState } from 'react';
+import React from 'react';
 import client from '../utils/apollo-client';
 import { GET_PROJECTS_LIST } from '../query/home';
 import dynamic from 'next/dynamic';
 import HeroBanner from '../components/page-banner/PageBanner';
-import WelcomePrompt from '../components/welcome-prompt/WelcomePrompt';
 
 const DeveloperSection = dynamic(
   () => import('../components/developer-section/DeveloperSection')

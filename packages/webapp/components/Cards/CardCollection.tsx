@@ -24,7 +24,7 @@ interface CardCollectionProp {
 const mockImg = "https://images.unsplash.com/photo-1551650975-87deedd944c3"
 
 const CardCollection = (props: CardCollectionProp) => (
-    <div className="rounded-[20px] h-[450px] w-full bg-slate-200 flex shadow-sm hover:shadow-md hover:cursor-pointer relative border">
+    <div className="rounded-[20px] h-[450px] w-full bg-slate-200 flex hover:shadow-md hover:cursor-pointer relative border">
         <div className="h-[95%] w-full relative">
             <Image src={props.project?.imageUrl || mockImg} fill alt={""} className="rounded-[20px] object-cover" />
         </div>
@@ -38,7 +38,7 @@ const CardCollection = (props: CardCollectionProp) => (
                 <Developer developer={props.project.developer} />
             </div>
             <div className="box-border overflow-hidden pb-2 h-auto">
-                <span className="text-sm font-light line-clamp-2" title={props.project.description}>{props.project.description}</span>
+                <span className="text-sm font-light line-clamp-2 whitespace-normal" title={props.project.description}>{props.project.description}</span>
             </div>
         </div>
     </div>

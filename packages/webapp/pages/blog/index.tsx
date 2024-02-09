@@ -8,18 +8,12 @@ const techBlogCategories = [
     "Mobile App Development",
     "Data Science",
     "Cybersecurity",
-    // "Cloud Computing",
     "Internet of Things (IoT)",
-    // "Programming Languages",
     "Tech Industry News",
     "Gadgets and Devices",
     "Software Development",
     "Tech Reviews",
-    // "Robotics",
     "Blockchain Technology",
-    // "Augmented Reality (AR)",
-    // "Virtual Reality (VR)",
-    // "Digital Marketing in Tech",
     "Tech Careers and Skills",
     "Open Source",
     "UX/UI Design",
@@ -28,10 +22,6 @@ const techBlogCategories = [
     "Tech Events and Conferences",
     "Coding Tips and Tricks",
     "Startups and Entrepreneurship in Tech",
-    // "Tech Ethics and Privacy",
-    // "Productivity Tools",
-    // "Tech Tutorials",
-    // "Data Privacy and Security",
     "Geek Culture",
 ];
 const Blog = () => {
@@ -40,8 +30,8 @@ const Blog = () => {
             <div className="flex flex-row flex-nowrap w-full pb-4 overflow-x-scroll gap-4">
                 {
                     techBlogCategories.map((item) => (
-                        <div key={item} className="border py-2 flex items-center cursor-pointer hover:border-primary hover:bg-primary">
-                            <span className="text-sm inline-block px-4">{item}</span>
+                        <div key={item} className="border py-2 flex items-center cursor-pointer hover:border-primary hover:bg-primary hover:text-white">
+                            <span className="text-sm inline-block px-4 whitespace-nowrap">{item}</span>
                         </div>
                     ))
                 }

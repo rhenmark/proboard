@@ -30,9 +30,6 @@ const PageHeader = (props: IPageHeader) => {
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
     const pathname = usePathname()
 
-    console.log("pathname ==>", pathname)
-
-
     useLayoutEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.scrollY;
@@ -51,9 +48,9 @@ const PageHeader = (props: IPageHeader) => {
             className={`Header w-full h-20 sticky top-0 bg-white z-50 grid grid-cols-[auto_1fr] px-4 md:px-[60px] items-center overflow-hidden ${isScrolled ? 'shadow-md' : ''
                 }`}
         >
-            <h2 className="text-[32px] font-[500]">
-                <Link href="/">
-                    Pr<span className="text-primary">o</span>board
+            <h2 className="text-[32px] font-[500] font-">
+                <Link href="/" className=''>
+                    Pr<span className="text-secondary">o</span>board
                 </Link>
             </h2>
             {!props.hideNav && (

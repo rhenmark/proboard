@@ -15,7 +15,7 @@ const AppWrapper = (props: PropsWithChildren<WrapperProps>) => {
 };
 
 
-export const ContentWrapper = (props: PropsWithChildren<{ className?: "string" }>) => {
+export const ContentWrapper = (props: PropsWithChildren<{ className?: string }>) => {
     return (
         <div className={`md:max-w-7xl m-auto w-full h-full ${props.className}`}>
             {props.children}

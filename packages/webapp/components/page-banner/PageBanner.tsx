@@ -17,7 +17,7 @@ const PageBanner = () => (
                     <Image src="/images/icon-search.svg" height={47} width={47} alt="" className="" />
                 </Button>
             </div>
-            <Image src="/images/banner-img.svg" height={400} width={300} alt="" className="absolute right-0 top-10 hidden md:block" />
+            {/* <Image src="/images/banner-img.svg" height={400} width={300} alt="" className="absolute right-0 top-10 hidden md:block" /> */}
         </ContentWrapper>
     </div>
 )

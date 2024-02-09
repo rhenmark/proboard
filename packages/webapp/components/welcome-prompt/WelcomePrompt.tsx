@@ -7,12 +7,16 @@ const purpose = ["Developer", "Student", "Recruiter", "Employer"]
 
 const WelcomePrompt = () => {
     const [showChild, setShowChild] = useState(false);
-    const [selectedValue, setSelected] = useState("")
+    const [selectedValue, setSelected] = useState(undefined)
 
     // Wait until after client-side hydration to show
     useEffect(() => {
         setShowChild(true);
-        // document.body.style.overflow = "hidden"
+        document.body.style.overflow = "hidden"
+
+        return () => {
+            document.body.style.overflow = "auto"
+        }
     }, []);
 
     if (!showChild) {
@@ -21,11 +25,12 @@ const WelcomePrompt = () => {
     }
 
     const handleChange = (option) => {
+        document.body.style.overflow = "auto"
         setSelected(option.value)
     }
 
     return (
-        <dialog open={false} className="fixed top-0 h-full w-full z-50 bg-[rgba(21,21,21,0.5)] grid place-items-center">
+        <dialog open={false} className="fixed top-0 h-full w-full z-50 bg-[rgba(21,21,21,0.5)] backdrop-blur-sm grid place-items-center">
             <div className="bg-white w-[40%] max-w-[40%] min-h-[40%] rounded-sm p-4 shadow-md">
                 <div className="grid justify-center text-center w-full px-4 mb-14">
                     <span className="text-2xl">Welcome to Proboard</span>
@@ -33,7 +38,7 @@ const WelcomePrompt = () => {
                 </div>
                 <div>
                     <span className="my-2 text-sm block">Unlock a better experience: Kindly specify your role. Your input enhances our Proboard app for you! </span>
-                    <select className="border-2 border-black h-12 w-full px-2 outline-none" value={selectedValue} onChange={handleChange}>
+                    <select className="border-2 border-black h-12 w-full px-2 outline-none appearance-none" value={selectedValue} onChange={handleChange}>
                         <option value="" disabled>Select what describes you</option>
                         {
                             purpose.map((item) => (
@@ -44,7 +49,7 @@ const WelcomePrompt = () => {
                     </select>
                 </div>
                 <div className="my-4 grid place-content-end">
-                    <Button className="bg-primary !px-10 h-[44px] text-lg disabled:bg-white disabled:border disabled:hover:shadow-none disabled:text-gray-600" disabled={Boolean(selectedValue)} onClick={() => setShowChild(false)}>
+                    <Button className="bg-secondary !px-10 h-[44px] text-lg disabled:bg-white disabled:border disabled:hover:shadow-none disabled:text-gray-600" disabled={Boolean(selectedValue)} onClick={() => setShowChild(false)}>
                         Okay
                     </Button>
                 </div>

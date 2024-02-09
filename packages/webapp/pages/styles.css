@@ -18,8 +18,9 @@ body {
 }
 
 * {
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
+
 
 .auth_container {
   height: calc(100vh - 80px);
