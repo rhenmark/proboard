@@ -1,7 +1,7 @@
 import Image from "next/image"
 import React from "react"
-import { ProfileAvatar } from "../../pages/developer/[developer]"
 import Developer from "../developer/Developer"
+import { ProfileAvatar } from "../profile-avatar/ProfileAvatar"
 
 interface CardCollectionProp {
     logo?: string | React.ReactNode

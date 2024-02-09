@@ -1,9 +1,10 @@
+"use client"
+
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { ProfileAvatar } from '../../pages/developer/[developer]';
 import Developer from '../developer/Developer';
-import { PagesPath } from '../router-link/RouterLink';
+import { ProfileAvatar } from '../profile-avatar/ProfileAvatar';
 
 
 export const DeveloperSection = ({ developers }) => {
@@ -36,15 +37,7 @@ export const DeveloperSection = ({ developers }) => {
                         .map((item, index: number) => {
                             return (
                                 <div key={`${index}`} className='bg-white w-full min-h-[140px] py-2 grid justify-center place-items-center'>
-                                    <Link
-                                        href={{
-                                            pathname: `/developer/${item.username}`,
-                                            query: {
-                                                [PagesPath.DEVELOPER]: item.username,
-                                            },
-                                        }}
-
-                                    >
+                                    <Link href={`/developer/${item.username}`}>
                                         <ProfileAvatar url={item?.profileImage?.url} />
                                         <Developer developer={item} preview />
                                     </Link>

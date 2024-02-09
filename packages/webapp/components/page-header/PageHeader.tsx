@@ -1,4 +1,6 @@
-import React, { useLayoutEffect, useState } from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import { Button } from '@proboard/ui';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -30,7 +32,7 @@ const PageHeader = (props: IPageHeader) => {
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
     const pathname = usePathname()
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.scrollY;
             setIsScrolled(scrollTop > 0);

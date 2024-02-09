@@ -4,8 +4,8 @@ import RouterLink, {
 } from '../router-link/RouterLink';
 
 interface DeveloperProps {
-    developer: {
-        username: string;
+    developer?: {
+        username?: string;
     };
     preview?: boolean
 }
@@ -17,7 +17,7 @@ export function DeveloperRouteLink(
     return (
         <RouterLink
             page={PagesPath.DEVELOPER}
-            query={{ [PagesPath.DEVELOPER]: props.developer.username }}
+            query={props.developer.username}
         >
             {props.children}
         </RouterLink>

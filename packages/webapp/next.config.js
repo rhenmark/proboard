@@ -13,7 +13,13 @@ const nextConfig = {
     svgr: false,
   },
   images: {
-    domains: ['images.unsplash.com', 'images.ctfassets.net', "canva.com"]
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.ctfassets.net',
+        port: '',
+      },
+    ]
   },
   env: {
     CONTENTFUL_SPACE: process.env.CONTENTFUL_SPACE,

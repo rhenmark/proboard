@@ -1,15 +1,10 @@
+'use client';
+
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { Button } from '@proboard/ui';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
-
-const CardCollection = dynamic(
-    () => import('../cards/CardCollection'),
-    {
-        ssr: false
-    }
-);
+import CardCollection from '../cards/CardCollection'
 
 enum FilterType {
     ALL = 0,
@@ -65,31 +60,34 @@ export const ProjectsSection = ({ projects }) => {
 
                 <div className="mt-8 grid md:grid-cols-3 gap-6">
                     {projects
-                        ?.filter((item: { type: FilterType; }) => {
+                        ?.filter((item: { type: FilterType }) => {
                             return filter === 0 ? item.type : item.type === filter;
                         })
-                        .map((item: { slug: any; developer: any; title: any; shortDescription: any; imagePreview: { url: any; }; }, index: number) => {
-                            return (
-                                <Link
-                                    href={{
-                                        pathname: '/project/[slug]',
-                                        query: {
-                                            slug: item.slug,
-                                        },
-                                    }}
-                                    key={`${index}`}
-                                >
-                                    <CardCollection
-                                        project={{
-                                            developer: item.developer,
-                                            title: item.title,
-                                            description: item.shortDescription,
-                                            imageUrl: item?.imagePreview?.url,
-                                        }}
-                                    />
-                                </Link>
-                            );
-                        })}
+                        .map(
+                            (
+                                item: {
+                                    slug: any;
+                                    developer: any;
+                                    title: any;
+                                    shortDescription: any;
+                                    imagePreview: { url: any };
+                                },
+                                index: number
+                            ) => {
+                                return (
+                                    <Link href={`/project/${item.slug}`} key={`${index}`}>
+                                        <CardCollection
+                                            project={{
+                                                developer: item.developer,
+                                                title: item.title,
+                                                description: item.shortDescription,
+                                                imageUrl: item?.imagePreview?.url,
+                                            }}
+                                        />
+                                    </Link>
+                                );
+                            }
+                        )}
                 </div>
             </div>
         </div>

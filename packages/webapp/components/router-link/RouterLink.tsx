@@ -1,30 +1,21 @@
-import Link from "next/link"
-import React, { PropsWithChildren } from "react"
+import Link from 'next/link';
+import React, { PropsWithChildren } from 'react';
 
 export enum PagesPath {
-    DEVELOPER = "developer",
-    PROJECT = "project"
+    DEVELOPER = 'developer',
+    PROJECT = 'project',
 }
 
 export const PagesPathQuery = {
-    developer: "developer"
-} as const
+    developer: 'developer',
+} as const;
 
-type QueryRecord<T> = keyof T
+type QueryRecord<T> = keyof T;
 interface RouterLinkProps {
-    query: { [key in QueryRecord<typeof PagesPath>]: string }
-    page: PagesPath
+    query: string
+    page: PagesPath;
 }
 
 export default function RouterLink(props: PropsWithChildren<RouterLinkProps>) {
-    return (
-        <Link
-            href={{
-                pathname: `/${props.page}/[${PagesPathQuery[props.page]}]`,
-                query: props.query
-            }}
-        >
-            {props.children}
-        </Link >
-    )
+    return <Link href={`/${props.page}/${props.query}`}>{props.children}</Link>;
 }

@@ -1,8 +1,4 @@
 import React, { PropsWithChildren } from 'react';
-import dynamic from 'next/dynamic';
-
-const PageHeader = dynamic(() => import("../page-header/PageHeader"))
-
 interface WrapperProps {
     hideNav?: boolean
 }

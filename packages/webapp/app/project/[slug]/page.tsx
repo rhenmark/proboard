@@ -1,29 +1,34 @@
+
+
 import React, { useEffect, useState } from 'react';
-import { Wrapper } from '../../components/Wrapper';
-import client from '../../utils/apollo-client';
-import { GET_PROJECT_INFO } from '../../query/project';
+import Wrapper from '../../../components/wrapper/Wrapper';
+import client from '../../../utils/apollo-client';
+import { GET_PROJECT_INFO } from '../../../query/project';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import Developer from '../../components/developer/Developer';
+import Developer from '../../../components/developer/Developer';
 import Image from 'next/image';
 import Link from 'next/link';
-import { contentOptions } from '../../common/content-utils';
+import { contentOptions } from '../../../common/content-utils';
 
-const Project = ({ project, loading, error }) => {
-    const [mounted, setMounted] = useState(false);
-    // workaround
-    const [asset, setAsset] = useState(undefined);
+const Project = async ({ params: { slug } }) => {
+    const data = await getData({ slug })
+    const project = data?.project;
+    const asset = project?.assetsCollection?.items[0]
+    // const [mounted, setMounted] = useState(false);
+    // // workaround
+    // const [asset, setAsset] = useState(undefined);
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+    // useEffect(() => {
+    //     setMounted(true);
+    // }, []);
 
-    useEffect(() => {
-        setAsset(project?.assetsCollection?.items[0]);
-    }, [project]);
+    // useEffect(() => {
+    //     setAsset(project?.assetsCollection?.items[0]);
+    // }, [project]);
 
-    if (typeof window === 'undefined' || !mounted || loading || !project) {
-        return <div>Loading...</div>;
-    }
+    // if (typeof window === 'undefined' || !mounted || loading || !project) {
+    //     return <div>Loading...</div>;
+    // }
 
     console.log("project.description?.json ==>", project.description?.json)
 
@@ -44,7 +49,7 @@ const Project = ({ project, loading, error }) => {
                     </div>
                     <div className="w-full">
                         <div className="w-full mb-8 md:mb-0 sticky top-36 ">
-                            {mounted && asset && asset?.contentType.includes('video') && (
+                            {asset?.contentType.includes('video') && (
                                 <video
                                     controls
                                     muted
@@ -56,7 +61,7 @@ const Project = ({ project, loading, error }) => {
                                     Your browser does not support the video tag.
                                 </video>
                             )}
-                            {mounted && asset && asset?.contentType.includes('image') && (
+                            {asset?.contentType.includes('image') && (
                                 <Image width={800} height={400} alt={''} src={asset?.url} />
                             )}
                             <div className="mt-4">
@@ -111,7 +116,8 @@ const Project = ({ project, loading, error }) => {
     );
 };
 
-export const getServerSideProps = async (context) => {
+const getData = async ({ slug }) => {
+    console.log("slug ==>", slug)
     const {
         data,
         loading,
@@ -119,16 +125,14 @@ export const getServerSideProps = async (context) => {
     } = await client.query({
         query: GET_PROJECT_INFO,
         variables: {
-            slug: context?.query?.slug,
+            slug: slug,
         },
     });
 
     return {
-        props: {
-            project: data?.proboardCollection?.items[0] || null,
-            loading,
-            error,
-        },
+        project: data?.proboardCollection?.items[0] || null,
+        loading,
+        error,
     };
 };
 
