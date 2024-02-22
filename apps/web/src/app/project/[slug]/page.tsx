@@ -14,22 +14,6 @@ const Project = async ({ params: { slug } }: any) => {
     const data = await getData({ slug })
     const project = data?.project;
     const asset = project?.assetsCollection?.items[0]
-    // const [mounted, setMounted] = useState(false);
-    // // workaround
-    // const [asset, setAsset] = useState(undefined);
-
-    // useEffect(() => {
-    //     setMounted(true);
-    // }, []);
-
-    // useEffect(() => {
-    //     setAsset(project?.assetsCollection?.items[0]);
-    // }, [project]);
-
-    // if (typeof window === 'undefined' || !mounted || loading || !project) {
-    //     return <div>Loading...</div>;
-    // }
-
 
     return (
         <Wrapper>

@@ -25,7 +25,7 @@ export default function RootLayout({
         <title>Proboard</title>
         <link rel="manifest" href="/manifest.json" />
         <link rel="shortcut icon" href="/images/logo/proboard-logo.png" />
-        <meta name="theme-color" content="#88AF98" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400" rel="stylesheet" />        <meta name="theme-color" content="#88AF98" />
       </head>
       <body className={`${poppins.className}`}>
         <PageHeader />
