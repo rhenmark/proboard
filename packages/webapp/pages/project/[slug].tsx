@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Wrapper } from '../../components/Wrapper';
+import Wrapper from '../../components/wrapper/Wrapper';
 import client from '../../utils/apollo-client';
 import { GET_PROJECT_INFO } from '../../query/project';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';

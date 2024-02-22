@@ -1,11 +1,8 @@
 import React, { PropsWithChildren } from 'react';
-import dynamic from 'next/dynamic';
-
-const PageHeader = dynamic(() => import("../page-header/PageHeader"))
-
 interface WrapperProps {
     hideNav?: boolean
 }
+
 const AppWrapper = (props: PropsWithChildren<WrapperProps>) => {
     return (
         <div className="w-screen min-h-screen">
@@ -13,7 +10,6 @@ const AppWrapper = (props: PropsWithChildren<WrapperProps>) => {
         </div>
     );
 };
-
 
 export const ContentWrapper = (props: PropsWithChildren<{ className?: string }>) => {
     return (

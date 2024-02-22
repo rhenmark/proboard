@@ -4,11 +4,8 @@ import { GET_DEVELOPER_INFO } from '../../query/developer';
 import client from '../../utils/apollo-client';
 import Image from 'next/image';
 import { Button, OpenIcon } from '@proboard/ui';
-import dynamic from 'next/dynamic';
+import Wrapper from "../../components/wrapper/Wrapper"
 
-const Wrapper = dynamic(() => import("../../components/wrapper/Wrapper"), {
-    ssr: false
-})
 
 export default function DeveloperPage(props) {
     const { developer, loading, error } = props;
