@@ -47,11 +47,11 @@ const PageHeader = (props: IPageHeader) => {
 
     return (
         <header
-            className={`Header w-full h-20 sticky top-0 bg-white z-50 grid grid-cols-[auto_1fr] px-4 md:px-[60px] items-center overflow-hidden ${isScrolled ? 'shadow-md' : ''
+            className={`Header w-full h-20 sticky top-0 bg-white z-50 grid grid-cols-[auto_1fr] px-4 md:px-[60px] items-center overflow-hidden ${isScrolled ? 'shadow-md' : 'border-b'
                 }`}
         >
             <h2 className="text-[32px] font-[500] font-">
-                <Link href="/" className=''>
+                <Link href="/" className="text-black">
                     Pr<span className="text-secondary">o</span>board
                 </Link>
             </h2>

@@ -8,13 +8,28 @@ export const GET_DEVELOPER_INFO = gql`
         currentPosition
         mobileNumber
         profileImage {
-            url
-            fileName
+          url
+          fileName
         }
         skills
         interests
         socialMedia
         certificates
+      }
+    }
+  }
+`;
+
+export const GET_DEVELOPER_LIST = gql`
+  query {
+    developerCollection {
+      items {
+        username
+        currentPosition
+        socialMedia
+        profileImage {
+          url
+        }
       }
     }
   }
