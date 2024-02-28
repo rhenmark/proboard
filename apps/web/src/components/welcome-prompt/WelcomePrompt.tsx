@@ -11,8 +11,26 @@ const WelcomePrompt = () => {
 
     // Wait until after client-side hydration to show
     useEffect(() => {
-        setShowChild(true);
-        document.body.style.overflow = 'hidden';
+
+        const getCookie = (cname: string) => {
+            const name = cname + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        if (!getCookie("visited")) {
+            setShowChild(true);
+            document.body.style.overflow = 'hidden';
+        }
 
         return () => {
             document.body.style.overflow = 'auto';
@@ -20,21 +38,26 @@ const WelcomePrompt = () => {
     }, []);
 
     if (!showChild) {
-        // You can show some kind of placeholder UI here
         return null;
     }
 
     const handleChange = (option: any) => {
-        document.body.style.overflow = 'auto';
-        setSelected(option.value);
+        setSelected(option.target.value);
     };
+
+    const handleClick = () => {
+        setShowChild(false)
+        document.body.style.overflow = 'auto';
+        document.cookie = "visited=true";
+        document.cookie = `visitor_type=${selectedValue}`;
+    }
 
     return (
         <dialog
             open={false}
             className="fixed top-0 h-full w-full z-50 bg-[rgba(21,21,21,0.5)] backdrop-blur-sm grid place-items-center"
         >
-            <div className="bg-white w-[40%] max-w-[40%] pb-8 rounded-sm p-4 shadow-md">
+            <div className="bg-white w-[90%] md:w-[40%] md:max-w-[40%] pb-8 rounded-sm pt-20 p-4 shadow-md">
                 <div className="grid justify-center text-center w-full px-4 mb-14">
                     <span className="text-2xl">Welcome to Proboard</span>
                     <span className="text-xl">We are glad you are here!</span>
@@ -46,7 +69,6 @@ const WelcomePrompt = () => {
                     </span>
                     <select
                         className="border-2 border-black h-12 w-full px-2 outline-none appearance-none"
-                        defaultValue={selectedValue}
                         value={selectedValue}
                         onChange={handleChange}
                     >
@@ -64,7 +86,7 @@ const WelcomePrompt = () => {
                     <Button
                         className="bg-secondary !px-10 h-[44px] text-lg disabled:bg-white disabled:border disabled:hover:shadow-none disabled:text-gray-600"
                         disabled={Boolean(selectedValue === "")}
-                        onClick={() => setShowChild(false)}
+                        onClick={handleClick}
                     >
                         Okay
                     </Button>
