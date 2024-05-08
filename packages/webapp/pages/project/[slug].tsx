@@ -121,6 +121,7 @@ export const getServerSideProps = async (context) => {
         variables: {
             slug: context?.query?.slug,
         },
+        fetchPolicy: 'network-only'
     });
 
     return {
