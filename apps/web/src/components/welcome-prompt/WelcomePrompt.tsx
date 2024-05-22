@@ -65,7 +65,7 @@ const WelcomePrompt = () => {
                 <div>
                     <span className="my-2 text-sm block">
                         Unlock a better experience: Kindly specify your role. Your input
-                        enhances our Proboard app for you!{' '}
+                        enhances our Proboard app for you!
                     </span>
                     <select
                         className="border-2 border-black h-12 w-full px-2 outline-none appearance-none"

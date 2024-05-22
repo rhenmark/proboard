@@ -69,11 +69,11 @@ export const ProjectsSection = ({ projects }: any) => {
                         .map(
                             (
                                 item: {
-                                    slug: any;
-                                    developer: any;
-                                    title: any;
-                                    shortDescription: any;
-                                    imagePreview: { url: any };
+                                    slug: string;
+                                    developer: Record<string, unknown>;
+                                    title: string;
+                                    shortDescription: string;
+                                    imagePreview: { url: string };
                                 },
                                 index: number
                             ) => {
@@ -94,7 +94,6 @@ export const ProjectsSection = ({ projects }: any) => {
                         Array(6).fill("").map((_: any, index: any) => (
                             <div key={index} className="rounded-[20px] h-[450px] w-full bg-slate-200 flex hover:shadow-md animate-pulse relative border"></div>
                         ))
-
                     }
                 </div>
             </div>

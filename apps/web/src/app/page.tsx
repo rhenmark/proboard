@@ -20,7 +20,7 @@ export default async function Index() {
 }
 
 async function getData() {
-  const { data, loading, error } = await client.query({
+  const { data, loading } = await client.query({
     query: GET_PROJECTS_LIST,
     fetchPolicy: 'network-only',
   });

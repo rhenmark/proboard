@@ -25,11 +25,11 @@ interface CardCollectionProp {
 const mockImg = "https://images.unsplash.com/photo-1551650975-87deedd944c3"
 
 const CardCollection = (props: CardCollectionProp) => (
-    <div className="rounded-[20px] h-[450px] w-full bg-slate-200 flex hover:shadow-md hover:cursor-pointer relative border" onClick={props?.onClick}>
-        <div className="h-[95%] w-full relative">
-            <Image src={props.project?.imageUrl || mockImg} fill alt={""} className="rounded-[20px] object-cover" />
+    <div className="rounded-md h-[450px] w-full bg-slate-200 flex hover:cursor-pointer hover:shadow-md relative " onClick={props?.onClick} role="button">
+        <div className="rounded-t-md h-[95%] w-full relative">
+            <Image src={props.project?.imageUrl || mockImg} fill alt={""} className="object-cover rounded-t-md" />
         </div>
-        <div className="bg-white rounded-[20px] self-end align-bottom h-48 py-6 px-8 flex-col w-full overflow-hidden absolute">
+        <div className="bg-white self-end align-bottom h-48 py-6 px-8 flex-col w-full overflow-hidden absolute">
             <div className="w-full">
                 <h2 className="line-clamp-1">{props.project.title}</h2>
                 <hr className="w-full my-2 border-slate-200" />

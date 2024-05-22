@@ -57,7 +57,7 @@ const PageHeader = (props: IPageHeader) => {
             </h2>
             {!props.hideNav && (
                 <nav className="hidden justify-end items-center md:flex">
-                    <ul className="grid grid-flow-col grid-cols-[auto_auto] justify-end gap-[4px] mr-[4px]">
+                    <ul className="grid grid-flow-col grid-cols-[auto_auto] justify-end gap-[4px] mr-[4px] list-none">
                         {navItems.map((item: { name: string, path: string }) => (
                             <li
                                 key={item.name}
