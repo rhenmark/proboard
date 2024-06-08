@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { ContentWrapper } from '../wrapper/Wrapper';
-import algoliasearch from 'algoliasearch/lite';
 import {
   Hits,
   SearchBox,
@@ -10,6 +9,7 @@ import {
 } from 'react-instantsearch';
 import { InstantSearchNext } from 'react-instantsearch-nextjs';
 import Link from 'next/link';
+import { searchClient } from '../../config/algolia';
 
 const PageBanner = () => {
 
@@ -35,13 +35,7 @@ const PageBanner = () => {
   );
 };
 
-const ALGO_APP_ID: string = process.env.NEXT_PUBLIC_ALGO_APP_ID as string;
-const ALGO_API_KEY: string = process.env.NEXT_PUBLIC_ALGO_API_KEY  as string
 
-const searchClient = algoliasearch(
-  ALGO_APP_ID,
-  ALGO_API_KEY
-);
 
 const Search = () => {
   return (

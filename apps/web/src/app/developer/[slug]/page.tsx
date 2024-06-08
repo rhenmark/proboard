@@ -49,6 +49,7 @@ const getData = async (developer: string) => {
         variables: {
             username: developer,
         },
+        fetchPolicy: 'network-only',
     });
 
     return {

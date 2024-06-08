@@ -69,11 +69,11 @@ const PageHeader = (props: IPageHeader) => {
                             </li>
                         ))}
                     </ul>
-                    <Button className="bg-black text-white rounded-full">
+                    {/* <Button className="bg-black text-white rounded-full">
                         <Link className={`link`} href="/auth">
                             Account
                         </Link>
-                    </Button>
+                    </Button> */}
                 </nav>
             )}
         </header>

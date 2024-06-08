@@ -58,7 +58,7 @@ const LoadingPreview = () => {
 }
 
 async function getData() {
-    const { data, loading } = await client.query({ query: GET_DEVELOPER_LIST });
+    const { data, loading } = await client.query({ query: GET_DEVELOPER_LIST, fetchPolicy: 'network-only', });
     return {
         loading,
         developers: data?.developerCollection?.items || [],
