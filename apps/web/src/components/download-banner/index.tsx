@@ -6,9 +6,11 @@ const DownloadBanner = () => {
     return (
         <div className="relative w-full bg-[#4A8A64] px-[24px] md:px-[60px] py-10">
             <ContentWrapper>
-                <div className="w-auto flex flex-col justify-center h-full">
-                    <span className="block text-[54px] md:text-[60px] font-bold text-[#F9F9F9] leading-[58px] mb-2">Get the App</span>
+                <div className="w-auto flex flex-row justify-start h-full">
+                   <div>
+                    <span className="block text-[48px] md:text-[60px] font-normal text-[#F9F9F9] leading-[58px] mb-2">Get the App</span>
                     <span className="block text-lg text-[#F9F9F9]">Download the app and see new updates</span>
+                   </div>
                     <div className="flex mt-10 gap-4 justify-start">
                         <Image src="/images/google-play-store.svg" width="80" height="124" alt="playstore" />
                         <Image src="/images/apple-store.svg" width="80" height="124" alt="playstore" />

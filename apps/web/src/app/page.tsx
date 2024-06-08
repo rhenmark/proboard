@@ -4,7 +4,6 @@ import { GET_PROJECTS_LIST } from '../query/home';
 import HeroBanner from '../components/page-banner/PageBanner';
 import ProjectsSection from '../components/project-section/ProjectSection';
 import DeveloperSection from '../components/developer-section/DeveloperSection';
-import DownloadBanner from '../components/download-banner';
 
 export default async function Index() {
   const data = await getData();
@@ -14,7 +13,6 @@ export default async function Index() {
       <HeroBanner />
       <ProjectsSection projects={data?.projects} />
       <DeveloperSection developers={data?.developers} />
-      <DownloadBanner />
     </div>
   );
 }
@@ -24,6 +22,7 @@ async function getData() {
     query: GET_PROJECTS_LIST,
     fetchPolicy: 'network-only',
   });
+
   return {
     loading,
     projects: data?.proboardCollection?.items || [],
