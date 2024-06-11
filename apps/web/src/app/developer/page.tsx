@@ -26,11 +26,6 @@ const Developers = async () => {
                                 </div>
                                 <span className="whitespace-normal mt-4 block font-bold text-white ">{item?.username}</span>
                                 <span className="whitespace-normal overflow-hidden text-xs line-clamp-2 pt-2 text-white w-full">{item?.currentPosition}</span>
-                                {/* <div className="flex gap-2 mt-2">
-                                    {Array(3).fill("").map(((item, key) => (
-                                        <div className="h-[32px] w-[32px] rounded-full bg-[#A4B0C0]" key={key}></div>
-                                    )))}
-                                </div> */}
                             </div>
                         </Link>
                     ))}

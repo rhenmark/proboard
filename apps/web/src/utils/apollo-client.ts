@@ -6,11 +6,11 @@ const URL = `https://graphql.contentful.com/content/v1/spaces/${TOKEN}`
 
 const client = new ApolloClient({
     uri: URL,
-    ssrMode: true,
+    ssrMode: false,
     cache: new InMemoryCache(),
     headers: {
         authorization: `Bearer ${ACCESS_TOKEN}`
-    },
+    }
 })
 
 export default client

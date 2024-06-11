@@ -11,7 +11,7 @@ export default async function DeveloperPage({ params: { slug } }: { params: { sl
 
     return (
         <Wrapper>
-            {data?.loading || data?.error ? (
+            {data?.loading || data?.error || !data?.developer ? (
                 <div>loading</div>
             ) : (
                 <div className="h-full w-full px-4 pt-8 md:max-w-[1280px] md:container mx-auto ">
@@ -20,7 +20,7 @@ export default async function DeveloperPage({ params: { slug } }: { params: { sl
                             <ProfileAvatar url={data?.developer?.profileImage?.url} className="!h-60 !w-60" />
                             <div className="h-full w-full px-4 flex flex-col justify-between">
                                 <div className="flex flex-col">
-                                    <h2 className="text-3xl text-center md:text-left">@{data?.developer.username}</h2>
+                                    <h2 className="text-3xl text-center md:text-left">@{data?.developer?.username}</h2>
                                     <p className="text-md text-slate-800 font-thin mb-2 text-center md:text-left">
                                         {data?.developer.currentPosition}
                                     </p>
