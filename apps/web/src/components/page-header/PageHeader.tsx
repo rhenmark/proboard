@@ -31,14 +31,15 @@ const navItems = [
 ];
 
 function isMobileView() {
-  const isMobileDevice =
-    /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
-      navigator.userAgent.toLowerCase()
-    );
+ 
   if (typeof window === 'undefined') {
     return false;
   }
-
+  
+  const isMobileDevice =
+  /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
+    navigator.userAgent.toLowerCase()
+  );
   const isSmallScreen = window?.innerWidth <= 768;
   return isMobileDevice || isSmallScreen;
 }
