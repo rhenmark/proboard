@@ -46,7 +46,7 @@ const Search = () => {
             root: 'w-full bg-white h-[80px] md:w-[580px] px-[16px] py-[6px] grid grid-cols-[1fr_max-content] box-border absolute rounded-sm',
             form: 'grid grid-cols-[1fr_auto] gap-2',
             input:
-              'h-full outline-none placeholder:text-dark box-border w-[90%] [&::-webkit-search-cancel-button]:hidden',
+              'h-full outline-none placeholder:text-dark box-border w-[90%] [&::-webkit-search-cancel-button]:hidden bg-white',
             submitIcon: 'h-4 w-4',
             reset: 'absolute right-[10%] md:right-[8%] top-0 bottom-0',
           }}

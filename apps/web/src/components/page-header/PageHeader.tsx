@@ -62,7 +62,14 @@ const PageHeader = (props: IPageHeader) => {
     };
   }, []);
 
-  const handleShowMenu = () => setShowMenu(!showMenu);
+  const handleShowMenu = () => {
+    if (!showMenu) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    setShowMenu(!showMenu)
+  };
 
   return (
     <header
