@@ -13,11 +13,11 @@ const Developers = async () => {
         <div>
             <div className="py-4 bg-[#C3D1BB]">
                 <ContentWrapper>
-                    <h4 className="text-2xl text-black font-[500]">Developers</h4>
+                    {/* <h4 className="text-2xl text-black font-[500]">Developers</h4> */}
                 </ContentWrapper>
             </div>
             <ContentWrapper>
-                <div className="mt-8 grid grid-cols-4 gap-8">
+                <div className="mt-8 p-4 grid grid-cols-1 md:grid-cols-4 gap-8">
                     {loading ? <LoadingPreview /> : developers?.map((item: any, index: any) => (
                         <Link href={`developer/${item.username}`} key={index} >
                             <div className="p-4 rounded-md bg-[#68c491] min-h-[240px] box-border w-full overflow-hidden">

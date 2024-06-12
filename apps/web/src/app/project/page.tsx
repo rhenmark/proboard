@@ -12,7 +12,7 @@ const Project = async () => {
         <div>
             <div className="py-4 bg-[#C3D1BB]">
                 <ContentWrapper>
-                    <h4 className="text-2xl text-black font-[500] px-4 md:px-0">Projects</h4>
+                    {/* <h4 className="text-2xl text-black font-[500] px-4 md:px-0">Projects</h4> */}
                 </ContentWrapper>
             </div>
             <ContentWrapper>
