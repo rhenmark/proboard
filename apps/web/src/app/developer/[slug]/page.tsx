@@ -50,6 +50,11 @@ const getData = async (developer: string) => {
             username: developer,
         },
         fetchPolicy: 'network-only',
+        context: {
+            fetchOptions: {
+              next: { revalidate: 5 },
+            },
+        },
     });
 
     return {
