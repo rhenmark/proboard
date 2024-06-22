@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '@core-ui';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { track } from '@vercel/analytics';
 
 const purpose = ['Developer', 'Student', 'Recruiter', 'Employer'];
 
@@ -42,8 +43,9 @@ const WelcomePrompt = () => {
     return null;
   }
 
-  const handleChange = (option: any) => {
-    setSelected(option.target.value);
+  const handleChange = (item: string) => {
+    setSelected(item);
+    track('Visitor', { type: item });
   };
 
   const handleClick = () => {
@@ -72,22 +74,26 @@ const WelcomePrompt = () => {
             <span className="text-2xl">Welcome to Proboard</span>
           </div>
           <div>
-            <p>Select What describes you</p>
+            <p>Select what describes you</p>
             <div className="mt-4">
               {purpose.map((item) => (
                 <span
                   key={item}
-                  className={`mr-2 border-2 py-2 px-4 border-black inline-block rounded-full mb-4 cursor-pointer hover:bg-secondary hover:text-white hover:border-white ${selectedValue === item ? 'bg-secondary border-secondary text-white' : ''}`}
+                  className={`mr-2 border-2 py-2 px-4 border-black inline-block rounded-full mb-4 cursor-pointer hover:bg-secondary hover:text-white hover:border-white ${
+                    selectedValue === item
+                      ? 'bg-secondary border-secondary text-white'
+                      : ''
+                  }`}
                   role="button"
-                  onClick={() => setSelected(item)}
+                  onClick={() => handleChange(item)}
                 >
                   {item}
                 </span>
               ))}
             </div>
             <span className="my-2 text-sm block">
-              Unlock a better experience: Your input
-              enhances our Proboard app for you!
+              Unlock a better experience: Your input enhances our Proboard app
+              for you!
             </span>
           </div>
           <div className="my-4 grid place-content-end">
