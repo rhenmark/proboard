@@ -21,9 +21,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const firebaseAnalytics = typeof window !== "undefined" ? getAnalytics(app) : null;
 export const logFBEvent = async (type: string) => {
-  logEvent(firebaseAnalytics, 'visitor', {
-    visitor_type: type,
-  });
+  if (firebaseAnalytics) {
+    logEvent(firebaseAnalytics, 'visitor', {
+      visitor_type: type,
+    });
+  }
+  
   
 }
 
