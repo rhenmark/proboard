@@ -7,6 +7,8 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import './global.css';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import firebaseAnalytics from '../utils/firebaseAnalytics';
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '700'],

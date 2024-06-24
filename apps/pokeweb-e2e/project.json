@@ -1,0 +1,17 @@
+{
+  "name": "pokeweb-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/pokeweb-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/pokeweb-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "pokeweb:start"
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["pokeweb"]
+}

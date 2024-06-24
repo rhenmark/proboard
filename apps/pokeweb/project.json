@@ -1,0 +1,8 @@
+{
+  "name": "pokeweb",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/pokeweb",
+  "projectType": "application",
+  "targets": {},
+  "tags": []
+}

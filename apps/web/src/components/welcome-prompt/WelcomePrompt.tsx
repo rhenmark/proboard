@@ -5,6 +5,7 @@ import { Button } from '@core-ui';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { track } from '@vercel/analytics';
+import { logFBEvent } from '../../utils/firebaseAnalytics';
 
 const purpose = ['Developer', 'Student', 'Recruiter', 'Employer'];
 
@@ -46,13 +47,16 @@ const WelcomePrompt = () => {
   const handleChange = (item: string) => {
     setSelected(item);
     track('Visitor', { type: item });
+   
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     setShowChild(false);
     document.body.style.overflow = 'auto';
     document.cookie = 'visited=true';
     document.cookie = `visitor_type=${selectedValue}`;
+
+    await logFBEvent(selectedValue)
   };
 
   return (
