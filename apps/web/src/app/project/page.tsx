@@ -1,8 +1,7 @@
 import { ContentWrapper } from '../../components/wrapper/Wrapper';
 import client from '../../utils/apollo-client';
 import { GET_PROJECTS_LIST } from '../../query/home';
-import CardCollection from '../../components/cards/CardCollection';
-import Link from 'next/link';
+import PageProject from './page-project';
 
 const listing = ['Web', 'Mobile', 'Hybrid', 'ReactNative', 'Flutter', 'UI/UX'];
 const Project = async () => {
@@ -40,16 +39,7 @@ const Project = async () => {
                         ) : (
                             projects.map((item: any) => {
                                 return (
-                                    <Link href={`/project/${item.slug}`} key={item.slug}>
-                                        <CardCollection
-                                            project={{
-                                                developer: item.developer,
-                                                title: item.title,
-                                                description: item.shortDescription,
-                                                imageUrl: item?.imagePreview?.url,
-                                            }}
-                                        />
-                                    </Link>
+                                    <PageProject item={item} key={item.slug} />
                                 );
                             })
                         )}

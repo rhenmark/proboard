@@ -11,6 +11,12 @@
       "src": "/images/logo/logo-512.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "/images/maskable_icon_192x.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
     }
   ],
   "description": "Your project board collection",

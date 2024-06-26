@@ -29,7 +29,7 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400"
           rel="stylesheet"
-        />{' '}
+        />
         <meta name="theme-color" content="#88AF98" />
       </head>
       <body className={`${poppins.className}`}>
