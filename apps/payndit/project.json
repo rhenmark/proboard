@@ -1,0 +1,8 @@
+{
+  "name": "payndit",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/payndit",
+  "projectType": "application",
+  "targets": {},
+  "tags": []
+}

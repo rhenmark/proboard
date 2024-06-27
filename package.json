@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "web:dev": "npx nx run web:dev",
-    "web:build": "npx nx run web:build"
+    "web:build": "npx nx run web:build",
+    "payndit:dev": "npx nx run payndit:dev",
+    "payndit:build": "npx nx run payndit:build"
   },
   "private": true,
   "dependencies": {
