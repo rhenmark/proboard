@@ -12,7 +12,7 @@ export default async function Index() {
     <div>
       <HeroBanner />
       <ProjectsSection projects={data?.projects} />
-      <DeveloperSection developers={data?.developers} />
+      <DeveloperSection developers={data?.developers} hide={data?.hideDeveloperSection} />
     </div>
   );
 }
@@ -27,5 +27,6 @@ async function getData() {
     loading,
     projects: data?.proboardCollection?.items || [],
     developers: data?.developerCollection?.items || [],
+    hideDeveloperSection: data?.pages?.section?.developer?.hidden
   };
 }

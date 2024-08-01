@@ -6,7 +6,12 @@ import Developer from '../developer/Developer';
 import { ProfileAvatar } from '../profile-avatar/ProfileAvatar';
 import { useRouter } from 'next/navigation';
 
-export const DeveloperSection = ({ developers }: any) => {
+interface IDeveloperSection {
+  developers: any
+  hide?: boolean
+}
+
+export const DeveloperSection = ({ developers, hide }: IDeveloperSection) => {
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
 
@@ -21,6 +26,10 @@ export const DeveloperSection = ({ developers }: any) => {
   const handleClick = (username: string) => {
     router.push(`/developer/${username}`);
   };
+
+  if (hide) {
+    return true
+  }
 
   return (
     <div className="w-full py-10 md:px-10 md:py-20 min-h-[400px] relative z-10 mb-20">

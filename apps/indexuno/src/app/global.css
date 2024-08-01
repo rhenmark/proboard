@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.landing-text {
+    &::before {
+        content: "";
+        height: 1px;
+        width: 204px;
+        border: 1px dashed #6D61CF;
+        position: absolute;
+        top: 428px;
+        left: 0;
+    }
+    
+    &::after {
+        content: "";
+        width: 1px;
+        height: 338px;
+        border: 1px dashed #6D61CF;
+        position: absolute;
+        top: 0;
+        left: 417px;
+    }
+}
