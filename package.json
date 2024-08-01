@@ -6,7 +6,9 @@
     "web:dev": "npx nx run web:dev",
     "web:build": "npx nx run web:build",
     "payndit:dev": "npx nx run payndit:dev",
-    "payndit:build": "npx nx run payndit:build"
+    "payndit:build": "npx nx run payndit:build",
+    "indexuno:dev": "npx nx run indexuno:dev",
+    "indexuno:build": "npx nx run indexuno:build"
   },
   "private": true,
   "dependencies": {

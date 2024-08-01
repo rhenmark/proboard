@@ -1,0 +1,17 @@
+{
+  "name": "indexuno-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/indexuno-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/indexuno-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "indexuno:start"
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["indexuno"]
+}

@@ -30,5 +30,8 @@ query {
       }
     }
   }
+  pages(id: "3TVEKMtqyzjbnAASvEUIjR") {
+    section
+  }
 }
 `
