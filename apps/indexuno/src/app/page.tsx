@@ -1,17 +1,32 @@
+'use client';
+
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const navItems = ['Home', 'Services', 'Clients', 'About', 'Connect'];
-export default async function Index() {
+export default function Index() {
   return (
     <>
       <div className="w-full min-h-screen m-auto relative">
-       <PageHeader />
+        <PageHeader />
         <main className="w-full min-h-[70vh]">
           <div className="ml-[205px] mt-[238px] flex flex-col gap-[70px] w-[424px]">
-            <span className="w-full border-2 border-[#6D61CF] text-[48px] p-4 border-dashed border-spacing-10 font-bold landing-text">
+            <motion.span 
+              className="w-full border-2 border-[#6D61CF] text-[48px] p-4 border-dashed border-spacing-10 font-bold landing-text"
+              initial={{
+                opacity: 0,
+                y: -500
+              }}
+              animate={{
+                  opacity: 1,
+                  y: 0,
+                  
+              }}
+              transition={{ duration: 0.5 }}
+            >
               Elevate your <br /> business digitally{' '}
-            </span>
-            <div>
+            </motion.span>
+            <motion.div initial={{opacity: 0}}>
               <button className="h-[80px] w-[424px] bg-[#6D61CF] bg-opacity-90 text-2xl text-white rounded-md grid grid-flow-col justify-between items-center px-10">
                 Get started
                 <Image
@@ -21,27 +36,26 @@ export default async function Index() {
                   alt="arrow-right"
                 />
               </button>
-            </div>
+            </motion.div>
           </div>
-          <div className=" w-[65%] lg:w-[45%] h-[800px] bg-[#DCD8FF] absolute right-0 top-0 rounded-bl-md">
-          </div>
-          <div> 
+          <div className=" w-[65%] lg:w-[45%] h-[800px] bg-[#DCD8FF] absolute right-0 top-0 rounded-bl-md"></div>
+          <div>
             <Image
-              src="/assets/landing.png"
+              src="/assets/landing.webp"
               alt="landing"
               className="absolute xl:right-[15%] xl:top-32 w-[50%] lg:w-[40%] lg:right-[30px] lg:top-[5%]"
               width={775}
               height={762}
-            /></div>
+            />
+          </div>
         </main>
         <div className="w-full min-h-screen max-w-[1512px] m-auto relative">
-           <WeOffer />
+          <WeOffer />
           <OurClients />
           <OurProjects />
           <WhoWeAre />
           <GeInTouch />
         </div>
-       
       </div>
       <Footer />
     </>
@@ -52,20 +66,34 @@ const PageHeader = () => {
   return (
     <div className=" max-w-screen-xl mx-auto h-[100px] header grid grid-flow-col items-center px-[100px]">
       <div>
-        <Image src="/icon/icon-header.webp" height={96} width={96} alt="header-icon"/>
+        <Image
+          src="/icon/icon-header.webp"
+          height={96}
+          width={96}
+          alt="header-icon"
+        />
       </div>
       <ul className="grid grid-flow-col justify-start gap-12 z-20">
         {navItems.map((item: string) => (
-          <li key={item}>{item}</li>
+          <li key={item} className="cursor-pointer">
+            {item}
+          </li>
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
+
+const list = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: {
+  when: "beforeChildren",
+  staggerChildren: 0.3,
+}, },  };
+const item = { hidden: { x: -10, opacity: 0 }, visible: { opacity: 1, x: 0 }, };
 
 const WeOffer = () => {
+ 
   return (
-    <div className="px-[100px] m-auto min-h-[100vh]">
+    <div className="px-[100px] m-auto min-h-[100vh]" id="weoffer">
       <div className="grid">
         <span className="text-[40px]">What do we offer?</span>
         <span className="w-[781px]">
@@ -73,8 +101,15 @@ const WeOffer = () => {
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </span>
       </div>
-      <div className="grid mt-[74px] grid-flow-col">
-        <div>
+      <motion.ul
+        className="grid mt-[74px] grid-flow-col"
+        // animate="visible"
+        whileInView="visible"
+        variants={list}
+        initial="hidden"
+        viewport={{ once: true }}
+      >
+        <motion.li variants={item}>
           <Image
             alt="Web & Marketing Design"
             src={'/assets/web-n-marketing.png'}
@@ -84,8 +119,8 @@ const WeOffer = () => {
           <span className="text-2xl pt-3 inline-block">
             Web & Marketing Design
           </span>
-        </div>
-        <div>
+        </motion.li>
+        <motion.li variants={item}>
           <Image
             alt="Web & Marketing Design"
             src={'/assets/website-mobile-dev.png'}
@@ -95,8 +130,8 @@ const WeOffer = () => {
           <span className="text-2xl pt-3 inline-block ">
             Website & Mobile Development
           </span>
-        </div>
-        <div>
+        </motion.li>
+        <motion.li variants={item}>
           <Image
             alt="Web & Marketing Design"
             src={'/assets/socialmedia-marketing.png'}
@@ -106,8 +141,8 @@ const WeOffer = () => {
           <span className="text-2xl pt-3 inline-block">
             Social Media & Marketing <br /> Management
           </span>
-        </div>
-      </div>
+        </motion.li>
+      </motion.ul>
     </div>
   );
 };
@@ -396,8 +431,8 @@ const Footer = () => {
         </div>
       </div>
       <div className="max-w-screen-2xl mx-auto p-8">
-        <hr className='border-[#373169]'/>
-        <div className='pt-6'>
+        <hr className="border-[#373169]" />
+        <div className="pt-6">
           <span>Copyright © 2024. All rights reserved</span>
         </div>
       </div>
