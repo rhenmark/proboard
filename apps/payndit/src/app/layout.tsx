@@ -1,3 +1,4 @@
+import FloatingHome from '../components/floating-home';
 import './global.css';
 import './globalicon.css';
 
@@ -13,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <FloatingHome />
+      </body>
     </html>
   );
 }

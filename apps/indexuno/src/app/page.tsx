@@ -9,10 +9,10 @@ export default function Index() {
     <>
       <div className="w-full min-h-screen m-auto relative">
         <PageHeader />
-        <main className="w-full min-h-[70vh]">
-          <div className="ml-[205px] mt-[238px] flex flex-col gap-[70px] w-[424px]">
+        <main className="w-screen min-h-[70vh]">
+          <div className="lg:ml-[205px] lg:mt-[238px] flex flex-col gap-[70px] w-full lg:w-[424px]">
             <motion.span 
-              className="w-full border-2 border-[#6D61CF] text-[48px] p-4 border-dashed border-spacing-10 font-bold landing-text"
+              className="w-full border-2 border-[#6D61CF] text-2xl md:text-[48px] md:leading-[60px] p-4 border-dashed border-spacing-10 font-bold landing-text"
               initial={{
                 opacity: 0,
                 y: -500
@@ -27,7 +27,7 @@ export default function Index() {
               Elevate your <br /> business digitally{' '}
             </motion.span>
             <motion.div initial={{opacity: 0}}>
-              <button className="h-[80px] w-[424px] bg-[#6D61CF] bg-opacity-90 text-2xl text-white rounded-md grid grid-flow-col justify-between items-center px-10">
+              <button className="h-[80px] w-full z-10 relative lg:w-[424px] bg-[#6D61CF] bg-opacity-90 text-2xl text-white rounded-md grid grid-flow-col justify-between items-center px-10">
                 Get started
                 <Image
                   src="/assets/arrow-right.svg"
@@ -38,7 +38,7 @@ export default function Index() {
               </button>
             </motion.div>
           </div>
-          <div className=" w-[65%] lg:w-[45%] h-[800px] bg-[#DCD8FF] absolute right-0 top-0 rounded-bl-md"></div>
+          <div className="w-[65%] lg:w-[45%] h-[90vh] md:h-screen z-[-1] bg-[#DCD8FF] absolute right-0 top-0 rounded-bl-md"></div>
           <div>
             <Image
               src="/assets/landing.webp"
@@ -64,7 +64,7 @@ export default function Index() {
 
 const PageHeader = () => {
   return (
-    <div className=" max-w-screen-xl mx-auto h-[100px] header grid grid-flow-col items-center px-[100px]">
+    <div className="w-screen lg:max-w-screen-xl mx-auto h-[100px] header grid grid-flow-col items-center px-5 lg:px-[100px]">
       <div>
         <Image
           src="/icon/icon-header.webp"
@@ -73,7 +73,7 @@ const PageHeader = () => {
           alt="header-icon"
         />
       </div>
-      <ul className="grid grid-flow-col justify-start gap-12 z-20">
+      <ul className="hidden lg:grid grid-flow-col justify-start gap-12 z-20">
         {navItems.map((item: string) => (
           <li key={item} className="cursor-pointer">
             {item}
@@ -93,16 +93,16 @@ const item = { hidden: { x: -10, opacity: 0 }, visible: { opacity: 1, x: 0 }, };
 const WeOffer = () => {
  
   return (
-    <div className="px-[100px] m-auto min-h-[100vh]" id="weoffer">
+    <div className="w-screen px-[100px] m-auto min-h-[100vh]" id="weoffer">
       <div className="grid">
         <span className="text-[40px]">What do we offer?</span>
-        <span className="w-[781px]">
+        <span className="w-full lg:w-[781px]">
           - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </span>
       </div>
       <motion.ul
-        className="grid mt-[74px] grid-flow-col"
+        className="grid mt-[74px] grid-flow-row md:grid-flow-col"
         // animate="visible"
         whileInView="visible"
         variants={list}
@@ -149,10 +149,10 @@ const WeOffer = () => {
 
 const OurClients = () => {
   return (
-    <div className="px-[100px] m-auto min-h-[100vh]">
+    <div className="w-screen px-5 lg:px-[100px] m-auto min-h-[100vh]">
       <div className="grid">
         <span className="text-[40px]">Who are our clients?</span>
-        <span className="w-[781px]">
+        <span className="lg:w-[781px]">
           - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </span>
@@ -171,10 +171,10 @@ const OurClients = () => {
 
 const OurProjects = () => {
   return (
-    <div className="px-[100px] m-auto min-h-[100vh]">
+    <div className="px-5 lg:px-[100px] m-auto min-h-[100vh]">
       <div className="grid">
         <span className="text-[40px]">Our Projects</span>
-        <span className="w-[781px]">
+        <span className="lg:w-[781px]">
           - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </span>
@@ -193,10 +193,10 @@ const OurProjects = () => {
 
 const WhoWeAre = () => {
   return (
-    <div className="px-[100px] m-auto min-h-[100vh] pt-52">
+    <div className="px-5 lg:px-[100px] m-auto min-h-[100vh] pt-52">
       <div className="grid">
         <span className="text-[40px]">Who we are?</span>
-        <span className="w-[781px]">
+        <span className="lg:w-[781px]">
           - we are small team with international experience which aims to help
           local business onboard digitally
         </span>
@@ -288,7 +288,7 @@ const WhoWeAre = () => {
 
 const GeInTouch = () => {
   return (
-    <div className="px-[100px] m-auto min-h-[100vh] pt-52 mb-20">
+    <div className="px-5 lg:px-[100px] m-auto min-h-[100vh] pt-52 mb-20">
       <div className="grid">
         <span className="text-[40px]">Get in touch with us!</span>
       </div>
@@ -380,9 +380,9 @@ const FormButton = () => {
 
 const Footer = () => {
   return (
-    <div className="w-full bg-[#6D61CF] bg-opacity-30">
-      <div className="max-w-screen-2xl mx-auto p-10 grid grid-cols-[30%_23%_23%_23%] gap-4">
-        <div className="">
+    <div className="w-screen bg-[#6D61CF] bg-opacity-30 overflow-hidden">
+      <div className="lg:max-w-screen-2xl mx-auto p-10 grid grid-flow-row lg:grid-cols-[30%_23%_23%_23%]  gap-4">
+        <div className="w-full">
           <div className="h-[68px] grid items-end">
             <span className="text-2xl">
               IndexUno Information
