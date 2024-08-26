@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import PageBanner from '../components/page-banner';
 import PageFooter from '../components/page-footer';
 import PageHeader from '../components/page-header';
@@ -32,7 +33,9 @@ const ServiceLanding = ({ title }: { title: string }) => {
           {Array(6)
             .fill('')
             .map((item, index) => (
-              <div key={index} className="w-[400px] h-[200px] bg-gray-300" />
+              <Link key={index} href={`/service/${index}`}>
+              <div className="w-[400px] h-[200px] bg-gray-300" />
+              </Link>
             ))}
         </div>
       </div>

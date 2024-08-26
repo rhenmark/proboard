@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 const menu = [
   {
@@ -57,13 +57,14 @@ const menu = [
 
 const Account = () => {
   const [activeMenu, setActiveMenu] = useState('acc-per-det');
-  const searchParams = useSearchParams()
-  const menuVal = searchParams.get('menu')
-
+  const searchParams = useSearchParams();
+  const menuVal = searchParams.get('menu');
 
   useEffect(() => {
-    setActiveMenu(menuVal || "acc-per-det") 
-  }, [menuVal])
+    if (menuVal) {
+      setActiveMenu(menuVal);
+    }
+  }, [menuVal]);
 
   const RightContent =
     {
@@ -85,11 +86,15 @@ const Account = () => {
                   <ul className="pl-4">
                     {item?.sub?.map((sub) => {
                       return (
-                        <li key={sub.id} className='w-full'>
-                            <Link href={`/account?menu=${sub.id}`}  className={`mb-4 p-2 w-full block cursor-pointer ${activeMenu === sub?.id ? 'bg-white/20' : ''}`}>
+                        <li key={sub.id} className="w-full">
+                          <Link
+                            href={`/account?menu=${sub.id}`}
+                            className={`mb-4 p-2 w-full block cursor-pointer ${
+                              activeMenu === sub?.id ? 'bg-white/20' : ''
+                            }`}
+                          >
                             {sub?.name}
-                            </Link>
-                         
+                          </Link>
                         </li>
                       );
                     })}
@@ -97,33 +102,6 @@ const Account = () => {
                 </div>
               );
             })}
-            {/* <div>
-              <h4 className="text-2xl font-bold mb-4">Account</h4>
-              <ul className="pl-4">
-                <li className="mb-4">Personal Details</li>
-                <li>Location Setting</li>
-              </ul>
-            </div>
-            <div className="mt-10">
-              <h4 className="text-2xl font-bold mb-4">Payment & Transaction</h4>
-              <ul className="pl-4">
-                <li className="mb-4">Payment Details</li>
-                <li className="mb-4">Transaction History</li>
-              </ul>
-            </div>
-            <div className="mt-10">
-              <h4 className="text-2xl font-bold mb-4">Security and Privacy</h4>
-              <ul className="pl-4">
-                <li className="mb-4">Change Password</li>
-                <li className="mb-4">Notification Settings</li>
-              </ul>
-            </div>
-            <div className="mt-10">
-              <h4 className="text-2xl font-bold mb-4">Help</h4>
-              <ul className="pl-4">
-                <li className="mb-4">Contact Support</li>
-              </ul>
-            </div> */}
           </div>
           <div>
             <RightContent />
@@ -201,4 +179,11 @@ const PersonalDetails = () => {
   );
 };
 
-export default Account;
+const Page = () => {
+  return (
+    <Suspense>
+      <Account />
+    </Suspense>
+  );
+};
+export default Page;

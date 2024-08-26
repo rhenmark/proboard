@@ -13,9 +13,9 @@ const PageHeader = () => {
           </Link>
           <div className="hidden md:grid justify-end gap-6 grid-flow-col items-center ">
             <PageHeaderLink href="/location?from=header">Location</PageHeaderLink>
-            <PageHeaderLink href="/services?from=header">Categories</PageHeaderLink>
+            <PageHeaderLink href="/categories?from=header">Categories</PageHeaderLink>
             <PageHeaderLink href="/login?from=header">Login</PageHeaderLink>
-            <Link  href='/login?status=signup' className="px-4 py-2 border-primary bg-primary hover:bg-primary/90 text-white border-[2px] rounded-md">
+            <Link  href='/signup?type=provider' className="px-4 py-2 border-primary bg-primary hover:bg-primary/90 text-white border-[2px] rounded-md">
               <span>I offer services</span>
             </Link>
           </div>

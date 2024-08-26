@@ -4,7 +4,7 @@ import { socialMediaLogin } from '../../constants/social-media';
 export default function Login() {
   return (
     <div className="bg-black text-white">
-      <div className="max-w-sm bg-black/90 mx-auto min-h-dvh grid pt-40 p-4">
+      <div className="max-w-sm bg-black/90 mx-auto min-h-dvh grid pt-20 p-4">
         <div className="w-full">
           <div className="mb-10 text-center text-white">
             <h4 className="text-2xl font-bold">Login to Payndit</h4>
