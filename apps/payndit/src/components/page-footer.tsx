@@ -1,5 +1,7 @@
 'use client';
 
+import Link from "next/link";
+
 const PageFooter = () => {
   return (
     <div className="bg-gray-200 mt-20">
@@ -40,10 +42,10 @@ const PageFooterOthers = () => {
       </ul>
       <ul>
         <li className="text-xl mb-2">Company</li>
-        <li>Lorem ipsum</li>
-        <li>Lorem ipsum</li>
-        <li>Lorem ipsum</li>
-        <li>Lorem ipsum</li>
+        <li>
+          <Link href="/about">About</Link>
+        </li>
+        <li> <Link href="/newsletter">NewsLetter</Link></li>
       </ul>
       <ul>
         <li className="text-xl mb-2">Download</li>

@@ -11,6 +11,11 @@
         position: absolute;
         top: 428px;
         left: 0;
+        animation-name: show;
+        animation-duration: 1s;
+        animation-delay: .8s;
+        opacity: 0;
+        animation-fill-mode: forwards;
     }
     
     &::after {
@@ -21,5 +26,21 @@
         position: absolute;
         top: 0;
         left: 417px;
+        animation-name: show;
+        animation-duration: 1s;
+        animation-delay: .8s;
+        opacity: 0;
+        animation-fill-mode: forwards;
+    }
+}
+
+@keyframes show {
+    0% {
+        visibility: hidden;
+        opacity: 0;
+    }
+    100% {
+        visibility: visible;
+        opacity: 1;
     }
 }
