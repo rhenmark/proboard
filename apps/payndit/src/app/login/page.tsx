@@ -1,7 +1,17 @@
+'use client'
+
 import Link from 'next/link';
 import { socialMediaLogin } from '../../constants/social-media';
+import { useRouter } from 'next/navigation';
+import { FormEvent } from 'react';
 
 export default function Login() {
+  const router = useRouter()
+  
+  const handleSignin = () => {
+    router.push('/account')
+  }
+
   return (
     <div className="bg-black text-white">
       <div className="max-w-sm bg-black/90 mx-auto min-h-dvh grid pt-20 p-4">
@@ -22,7 +32,7 @@ export default function Login() {
             <hr />
           </div>
           <div className="mt-4 w-full  grid grid-flow-row mx-auto">
-            <form>
+            <form onSubmit={(e: FormEvent) => e.preventDefault()}>
               <div className="my-4">
                 <label htmlFor="email" className="text-md mb-2 inline-block">
                   Email or username
@@ -48,7 +58,7 @@ export default function Login() {
                 />
               </div>
               <div className="mt-4">
-                <button className="p-4 w-full h-16 border-2 border-black bg-primary rounded-full text-white font-bold text-lg">
+                <button onClick={handleSignin} className="p-4 w-full h-16 border-2 border-black bg-primary rounded-full text-white font-bold text-lg">
                   Sign in
                 </button>
               </div>

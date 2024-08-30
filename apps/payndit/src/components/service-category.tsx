@@ -1,10 +1,10 @@
 "use client"
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from 'next/navigation'
 
 
-const mockCategory = Array(8).fill("");
 const categories = [
     {
         name: "Home Services",
@@ -56,7 +56,8 @@ const ServicesCategory = () => {
         <div className="grid grid-flow-col gap-3 overflow-x-scroll w-full">
             {
                categories.map((category, index) => (
-                <div onClick={handleClick} role="anchor" key={index} className={`w-28 grid place-items-center`}>
+                <div key={index} className={`w-28 grid place-items-center relative`}>
+                    <Link href="/categories" rel="noopener noreferrer nofollow" className="absolute left-0 right-0 top-0 bottom-0 z-10" />
                     <div className="bg-gray-100 h-16 w-16 rounded-full grid place-items-center pb-2">
                         <Image src={category.icon} height={40} width={40} alt={category.name}  />
                     </div>

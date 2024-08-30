@@ -74,34 +74,17 @@ const Account = () => {
   return (
     <div className="bg-black/90 min-h-dvh">
       <div className="max-w-screen-md mx-auto text-white py-20 px-4">
-        <div className="mb-10">
+        <div className="mb-10 flex justify-between items-center">
           <h2 className="text-4xl">Overview</h2>
+          <div>
+            <Link href="/" className="text-xl text-primary">
+              Sign out
+            </Link>
+          </div>
         </div>
         <div className="grid grid-flow-col grid-cols-[40%_1fr] gap-10">
           <div className="border-r border-r-white/40">
-            {menu.map((item) => {
-              return (
-                <div key={item.section}>
-                  <h4 className="text-xl font-bold mb-4">{item.section}</h4>
-                  <ul className="pl-4">
-                    {item?.sub?.map((sub) => {
-                      return (
-                        <li key={sub.id} className="w-full">
-                          <Link
-                            href={`/account?menu=${sub.id}`}
-                            className={`mb-4 p-2 w-full block cursor-pointer ${
-                              activeMenu === sub?.id ? 'bg-white/20' : ''
-                            }`}
-                          >
-                            {sub?.name}
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              );
-            })}
+            <ProfileMenu activeMenu={activeMenu} activePathname="/account" />
           </div>
           <div>
             <RightContent />
@@ -110,6 +93,38 @@ const Account = () => {
       </div>
     </div>
   );
+};
+
+export const ProfileMenu = ({
+  activeMenu,
+  activePathname,
+}: {
+  activeMenu: string;
+  activePathname: string;
+}) => {
+  return menu.map((item) => {
+    return (
+      <div key={item.section}>
+        <h4 className="text-xl font-bold mb-4">{item.section}</h4>
+        <ul className="pl-4">
+          {item?.sub?.map((sub) => {
+            return (
+              <li key={sub.id} className="w-full">
+                <Link
+                  href={`${activePathname}?menu=${sub.id}`}
+                  className={`mb-4 p-2 w-full block cursor-pointer ${
+                    activeMenu === sub?.id ? 'bg-gray-500/90' : ''
+                  }`}
+                >
+                  {sub?.name}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  });
 };
 
 const PersonalDetails = () => {
