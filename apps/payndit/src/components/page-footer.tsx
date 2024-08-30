@@ -1,6 +1,6 @@
 'use client';
 
-import Link from "next/link";
+import Link from 'next/link';
 
 const PageFooter = () => {
   return (
@@ -29,23 +29,50 @@ const PageSocialFooter = () => {
   );
 };
 
+const discoverLinks = [
+  {
+    label: 'Location',
+    link: '/location',
+  },
+  {
+    label: 'Categories',
+    link: '/categories',
+  },
+  {
+    label: 'Dashboard',
+    link: '/dashboard',
+  },
+];
+
+const companyLinks = [
+  {
+    label: 'About',
+    link: '/about',
+  },
+  {
+    label: 'Newsletter',
+    link: '/newsletter',
+  },
+];
+
 const PageFooterOthers = () => {
   return (
     <div className="mt-4 grid grid-cols-3">
       <ul>
         <li className="text-xl mb-2">Discover</li>
-        <li>Lorem ipsum</li>
-        <li>Lorem ipsum</li>
-        <li>Lorem ipsum</li>
-        <li>Lorem ipsum</li>
-        <li>Lorem ipsum</li>
+        {discoverLinks.map((item) => (
+          <li key={item.label}>
+            <Link href={item.link}>{item.label}</Link>
+          </li>
+        ))}
       </ul>
       <ul>
         <li className="text-xl mb-2">Company</li>
-        <li>
-          <Link href="/about">About</Link>
-        </li>
-        <li> <Link href="/newsletter">NewsLetter</Link></li>
+        {companyLinks.map((item) => (
+          <li key={item.label}>
+            <Link href={item.link}>{item.label}</Link>
+          </li>
+        ))}
       </ul>
       <ul>
         <li className="text-xl mb-2">Download</li>
@@ -55,13 +82,13 @@ const PageFooterOthers = () => {
 };
 
 const PageFooterInc = () => {
-    return (
-        <div className="mt-4 border border-t border-t-black/80 pt-2">
-            <ul>
-                <li>&copy; 2024 Payndit, Inc.</li>
-            </ul>
-        </div>
-    )
-}
+  return (
+    <div className="mt-4 border border-t border-t-black/80 pt-2">
+      <ul>
+        <li>&copy; 2024 Payndit, Inc.</li>
+      </ul>
+    </div>
+  );
+};
 
 export default PageFooter;
