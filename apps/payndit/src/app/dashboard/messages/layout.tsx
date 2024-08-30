@@ -2,7 +2,8 @@
 
 import GoogleIcon from 'apps/payndit/src/components/google-icon';
 import Link from 'next/link';
-import { PropsWithChildren } from 'react';
+import { useParams } from 'next/navigation';
+import { PropsWithChildren, Suspense } from 'react';
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (
@@ -15,7 +16,9 @@ const Layout = ({ children }: PropsWithChildren) => {
           <span>All Messages</span>
         </div>
         <div className="overflow-auto">
-          <List />
+          <Suspense>
+            <List />
+          </Suspense>
         </div>
       </div>
       {children}
@@ -24,18 +27,19 @@ const Layout = ({ children }: PropsWithChildren) => {
 };
 
 const List = () => {
+  const params = useParams()
   return (
     <ul>
       {new Array(10).fill('').map((item, index) => (
-        <MessageItem key={index} id={index} />
+        <MessageItem key={index} id={index} isActive={Number(params.id) === index } />
       ))}
     </ul>
   );
 };
 
-const MessageItem = ({ id }: { id: number }) => {
+const MessageItem = ({ id, isActive }: { id: number, isActive: boolean }) => {
   return (
-    <li className="grid grid-cols-[auto_1fr] gap-2 p-4 py-4 border-b border-black/20 relative hover:bg-gray-200">
+    <li className={`grid grid-cols-[auto_1fr] gap-2 p-4 py-4 border-b border-black/20 relative hover:bg-gray-200 ${isActive && "bg-blue-300" }`}>
       <Link href={`${id}`} className="absolute left-0 right-0 h-full" />
       <div className="h-12 w-12 rounded-full bg-blue-400 grid place-items-center">
         <GoogleIcon icon="person" />
