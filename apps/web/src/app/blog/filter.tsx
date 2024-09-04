@@ -34,12 +34,12 @@ const Filter = () => {
             {techBlogCategories.map((item) => (
                 <div
                     key={item}
-                    className={`border py-2 flex items-center cursor-pointer hover:border-primary hover:bg-primary hover:text-white ${activeFilter === item ? 'bg-primary text-white' : ''
+                    className={`border-2 px-2 border-black py-2 flex items-center cursor-pointer hover:border-primary rounded-full hover:bg-primary hover:text-white ${activeFilter === item ? 'bg-primary text-white' : ''
                         }`}
                     role="button"
                     onClick={() => setActiveFilter(item)}
                 >
-                    <span className="text-sm inline-block px-4 whitespace-nowrap">
+                    <span className="inline-block px-4 whitespace-nowrap ">
                         {item}
                     </span>
                 </div>
