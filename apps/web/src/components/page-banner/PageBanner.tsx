@@ -20,7 +20,7 @@ const PageBanner = () => {
       <ContentWrapper className="flex flex-col justify-center gap-[40px]">
         <div className="overflow-hidden">
           <h2 className="text-white text-[42px] md:pb-4 md:text-[48px] md:w-[450px] font-bold leading-[50px]">
-            Your project board collection
+            Project board collection
           </h2>
           <Image
             src="/images/banner-line.svg"

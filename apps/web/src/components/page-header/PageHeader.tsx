@@ -77,11 +77,12 @@ const PageHeader = (props: IPageHeader) => {
         isScrolled ? 'shadow-md' : 'border-b'
       }`}
     >
-      <h2 className="text-[32px] font-[500] font-">
-        <Link href="/" className="text-black">
-          Pr<span className="text-secondary">o</span>board
+      <div className="relative">
+        <Link href="/" className="text-black flex flex-row gap-2 items-center">
+          <Image src={"/images/logo/proboard-logo.webp"} alt='logo' height={60} width={60} className=''/>
+          <span className='hidden md:block font-medium text-2xl'>Proboard</span>
         </Link>
-      </h2>
+      </div>
       {isMobileView() && (
         <div className="grid justify-end">
           <Button
