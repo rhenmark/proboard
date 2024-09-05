@@ -1,4 +1,4 @@
-import React, { Key } from 'react';
+import React from 'react';
 import Wrapper from '../../../components/wrapper/Wrapper';
 import client from '../../../utils/apollo-client';
 import { GET_PROJECT_INFO } from '../../../query/project';

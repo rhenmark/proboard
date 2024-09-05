@@ -1,5 +1,8 @@
 import React from 'react'
 import { BLOCKS, MARKS } from '@contentful/rich-text-types';
+import ReactMarkdown from 'react-markdown';
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+
 
 const Bold = ({ children }: any) => <span className="font-bold">{children}</span>;
 
@@ -22,3 +25,30 @@ export const contentOptions = {
     [BLOCKS.UL_LIST]: (node: any, children: any) => <ListUL>{children}</ListUL>,
   },
 };
+
+
+export const blogContentOptions = {
+  renderText: (text: any) => {
+    return <><ReactMarkdown children={text} components={{
+      code(props) {
+        const {children, className, node, ...rest} = props
+        const match = /language-(\w+)/.exec(className || '')
+        return match ? (
+          // @ts-ignore
+          <SyntaxHighlighter
+            {...rest}
+            PreTag="div"
+            children={String(children).replace(/\n$/, '')}
+            language={match[1]}
+          />
+        ) : (
+          <code {...rest} className={className}>
+            {children}
+          </code>
+        )
+      }
+    }} />
+    <br/>
+    </>
+  }
+}
