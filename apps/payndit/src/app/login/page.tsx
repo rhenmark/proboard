@@ -18,7 +18,7 @@ export default function Login() {
     event.preventDefault()
 
     const signIn = async () => {
-        const { user, session, error } = await supabase.auth.signInWithPassword({
+        const {data, error } = await supabase.auth.signInWithPassword({
           email: emailForm.email,
           password: emailForm.password,
         });
@@ -28,7 +28,7 @@ export default function Login() {
           return;
         }
 
-        console.log(user, session)
+        console.log(data)
         handleSignin()
     }
     
