@@ -16,27 +16,21 @@ const Project = async ({ params: { slug } }: any) => {
 
   return (
     <Wrapper>
-      <div className="max-w-[1280px] m-auto pt-8 pb-32">
+      <div className="container mx-auto pt-8 pb-32 overflow-hidden">
         <div className="mb-4 px-4 md:px-0">
           <h2 className="text-3xl font-bold">{project.title}</h2>
           <p className="text-md">
             <Developer developer={project.developer} />
           </p>
         </div>
-        <div className="h-full w-screen grid grid-flow-row md:grid-flow-col md:grid-cols-[1fr_45%] md:gap-10 px-4 md:px-0 lg:container mx-auto">
-          <div className="w-full h-full md:px-0 order-last md:order-first">
-            <div className="w-full md:w-[75%] description font-light">
-              {documentToReactComponents(
-                project.description?.json,
-                contentOptions
-              )}
-            </div>
-          </div>
-          <div className="w-full">
-            <div className="w-full mb-8 md:mb-0 sticky top-36 ">
+        <div className="relative">
+          <div className="w-full relative flex-[.2]">
+            <div className="w-full mb-8 md:mb-0 md:sticky top-36 ">
+              <div className='container overflow-hidden'>
               <AssetSlider assets={asset} />
+              </div>
               <div className="mt-4">
-                <ul className="list-none flex flex-row gap-4">
+                <ul className="list-none flex justify-end flex-row gap-4 p-4">
                   {project?.links?.website && (
                     <li>
                       <Link
@@ -81,6 +75,12 @@ const Project = async ({ params: { slug } }: any) => {
               </div>
             </div>
           </div>
+          <div className="w-full p-4 mt-10 overflow-hidden flex-wrap md:w-[75%] description font-light">
+              {documentToReactComponents(
+                project.description?.json,
+                contentOptions
+              )}
+            </div>
         </div>
       </div>
     </Wrapper>

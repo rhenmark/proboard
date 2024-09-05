@@ -16,13 +16,6 @@ const Developers = async () => {
         </ContentWrapper>
       </div>
       <ContentWrapper>
-        {/* <div className="p-4 rounded-md bg-green-700 min-h-[240px] box-border w-full overflow-hidden">
-                                <div className="h-[120px] w-[120px] rounded-full bg-[#4e5b6b] relative">
-                                    <Image src={item?.profileImage?.url} fill alt={""} className="w-full h-full rounded-full object-cover bg-white" />
-                                </div>
-                                <span className="whitespace-normal mt-4 block font-bold text-white ">{item?.username}</span>
-                                <span className="whitespace-normal overflow-hidden text-xs line-clamp-2 pt-2 text-white w-full">{item?.currentPosition}</span>
-                            </div> */}
         <div className="mt-8 p-4 grid grid-cols-1 md:grid-cols-4 gap-8">
           {loading ? (
             <LoadingPreview />
@@ -33,8 +26,11 @@ const Developers = async () => {
                   className="max-w-sm min-h-40 bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden relative"
                   key={index}
                 >
-                     <Link href={`developer/${developer.username}`} className='absolute top-0 left-0 right-0 bottom-0' />
-                  <div className="h-[120px] w-[120px] rounded-full bg-black relative px-4 m-4" >
+                  <Link
+                    href={`developer/${developer.username}`}
+                    className="absolute top-0 left-0 right-0 bottom-0"
+                  />
+                  <div className="h-[120px] w-[120px] rounded-full bg-black relative px-4 m-4">
                     <Image
                       src={developer?.profileImage?.url}
                       fill

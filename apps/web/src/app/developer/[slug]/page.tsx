@@ -17,7 +17,7 @@ export default async function DeveloperPage({ params: { slug } }: { params: { sl
             ) : (
                 <div className="min-h-screen h-auto pb-20 relative w-full px-4 md:max-w-[1280px] md:container mx-auto ">
                     <div className="h-full">
-                        <div className=" grid grid-flow-rows md:grid-cols-[30%_70%] columns-2 gap-10 items-center overflow-x-hidden py-4">
+                        <div className=" grid grid-flow-rows md:grid-cols-[30%_1fr] columns-2 gap-10 items-center overflow-x-hidden py-4">
                             <ProfileAvatar url={data?.developer?.profileImage?.url} className="!h-60 !w-60" />
                             <div className="h-full w-full px-4 flex flex-col justify-between">
                                 <div className="flex flex-col">
@@ -84,54 +84,3 @@ const SocialMedia = (props: any) => {
         </div>
     );
 };
-
-// const SectionList = (props: any) => {
-//     if (!props?.items) {
-//         return null;
-//     }
-//     return (
-//         <div className="mt-12 w-fill ">
-//             <h2 className="mb-4 text-2xl font-medium">{props.title}</h2>
-//             <div className="flex flex-row flex-wrap">
-//                 {props?.items.map((item: any) => (
-//                     <span
-//                         key={item}
-//                         className="rounded-full mr-2 mb-2 p-1 px-4 bg-slate-300 text-sm"
-//                     >
-//                         {item}
-//                     </span>
-//                 ))}
-//             </div>
-//         </div>
-//     );
-// };
-
-// const Certificates = (props: any) => {
-//     const [collapse, setCollapse] = useState(true)
-//     if (!props?.items) {
-//         return null;
-//     }
-
-//     return (
-//         <div className="mt-12 w-fill ">
-//             <h2 className="mb-4">Certifications</h2>
-//             {
-//                 !collapse && 
-//                 <div className="grid grid-flow-row gap-4">
-//                     {props?.items.map((item: any) => (
-//                         <div className='grid grid-flow-row border-b-[1px] border-slate-200 pb-4' key={item?.name}>
-//                             <span className="font-medium text-lg">{item?.name}</span>
-//                             <span>By: {item?.issuing_organization}</span>
-//                             <span>Issued: {item?.issue_date}</span>
-//                             <Link href={item?.credential_url} rel="noopener noreferrer" target="_blank" className='mt-2 w-auto inline-block'>
-//                                 <Button className='bg-slate-800 text-white p-1 px-2 rounded-full grid grid-flow-col gap-2'>Show credential
-//                                     <OpenIcon color="white" width={24} />
-//                                 </Button>
-//                             </Link>
-//                         </div>
-//                     ))}
-//                 </div>
-//             }
-//         </div>
-//     );
-// };
