@@ -10,7 +10,7 @@ const Project = async () => {
     return (
         <div>
             <ContentWrapper>
-                <div className="min-h-screen p-4">
+                <div className="min-h-screen p-4 w-full">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4  w-full py-4 mb-8">
                         <div>
                             <h2 className="text-2xl font-semibold">Popular</h2>
@@ -26,7 +26,7 @@ const Project = async () => {
                             ))}
                         </div>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
                         {loading ? (
                             <LoadingPreview />
                         ) : (

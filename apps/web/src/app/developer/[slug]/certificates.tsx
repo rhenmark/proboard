@@ -46,7 +46,7 @@ const experiences = [
   },
   {
     company: 'Stratium Software Group',
-    role: 'January 2018 - August 2018',
+    role: 'Software Engineer',
     description: 'Led software development and managed technical projects.',
     duration: 'January 2016 - January 2018',
     location: 'Bacolod, Philippines',

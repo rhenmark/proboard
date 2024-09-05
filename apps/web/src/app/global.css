@@ -42,3 +42,11 @@
 .slick-arrow.slick-next::before {
   color: #000 !important;
 }
+
+.slick-next {
+  right: 25px !important;
+}
+
+.slick-prev {
+  left: 25px !important;
+}
