@@ -73,7 +73,7 @@ const PageHeader = (props: IPageHeader) => {
 
   return (
     <header
-      className={`Header w-full h-20 sticky top-0 bg-white z-50 grid grid-cols-[auto_1fr] px-4 md:px-[60px] items-center overflow-hidden ${
+      className={`Header w-full h-28 sticky top-0 bg-white z-50 grid grid-cols-[auto_1fr] px-4 md:px-[60px] items-center overflow-hidden ${
         isScrolled ? 'shadow-md' : 'border-b'
       }`}
     >

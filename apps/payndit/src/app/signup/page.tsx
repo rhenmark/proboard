@@ -48,7 +48,7 @@ const Signup = () => {
             <h4 className="text-4xl font-bold">Sign up with Payndit</h4>
           </div>
           <div className="mt-10">
-            <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
+            <form className="w-full" onSubmit={handleSubmit(onSubmit as any)}>
               <div className="grid grid-flow-row w-full mb-4">
                 <label htmlFor="email" className="text-md mb-2">
                   Email address
