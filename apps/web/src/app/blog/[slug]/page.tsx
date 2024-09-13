@@ -1,8 +1,5 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import {
-  blogContentOptions,
-  contentOptions,
-} from 'apps/web/src/common/content-utils';
+import { blogContentOptions } from 'apps/web/src/common/content-utils';
 import { GET_BLOGS_ITEM } from 'apps/web/src/query/blogs';
 import client from 'apps/web/src/utils/apollo-client';
 import Link from 'next/link';

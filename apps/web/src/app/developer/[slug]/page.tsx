@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { GET_DEVELOPER_INFO } from '../../../query/developer';
 import client from '../../../utils/apollo-client';
-import { Button, OpenIcon } from '@core-ui';
 import { ProfileAvatar } from '../../../components/profile-avatar/ProfileAvatar';
 import Wrapper from '../../../components/wrapper/Wrapper';
 import Certificates, { DownloadResume, SectionList, StudiesList, WorkExperiences } from './certificates';
@@ -33,7 +32,6 @@ export default async function DeveloperPage({ params: { slug } }: { params: { sl
                                         <StudiesList />
                                         <SectionList title="Tech Skills & Interest" items={[...data?.developer?.skills?.list, ...data?.developer?.interests?.list]} />
                                     </div>
-                                    {/* <SectionList title="Interests" items={data?.developer?.interests?.list} /> */}
                                 </div>
                             </div>
                         </div>

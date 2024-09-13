@@ -12,9 +12,6 @@ import Link from 'next/link';
 import { searchClient } from '../../config/algolia';
 
 const PageBanner = () => {
-
-
-
   return (
     <div className="w-screen h-[400px] bg-[#163121] relative px-[12px] md:px-[60px] flex flex-col justify-center gap-[40px] box-border">
       <ContentWrapper className="flex flex-col justify-center gap-[40px]">
