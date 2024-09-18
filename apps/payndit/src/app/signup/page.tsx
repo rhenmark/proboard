@@ -6,49 +6,49 @@ import {
   socialMediaLogin,
 } from '../../constants/social-media';
 import { useForm } from 'react-hook-form';
-import { supabase } from '../../constants/conf/common';
-import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
+import { Suspense, useEffect } from 'react';
 
-type Inputs = {
+type UserType = "user" | "provider"
+
+type FormInput = {
   email: string;
   password: string;
+  type: UserType,
+  termsAndCondition: boolean;
 };
 
 const Signup = () => {
-  const router = useRouter()
+  const searchParams = useSearchParams();
+  const queryType: UserType | string | null = searchParams.get('type') ;
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const onSubmit = (data: Inputs) => handleRegister(data)
+    setValue,
+    watch
+  } = useForm<FormInput>();
+  const onSubmit = handleSubmit((data) => {
+    console.log(data)
+  })
 
-  const handleRegister = async (form: Inputs) => {
-    const { data, error } = await supabase.auth.signUp({
-      email: form.email,
-      password: form.password
-    })
-    
-    if (error) {
-      alert("Failed to register");
-      return
-    }
+  useEffect(() => {
+     if(queryType) {
+      setValue("type", queryType as UserType || "user")
+     }
+  }, [queryType, setValue])
 
-    if (data.session) {
-      router.push("/account")
-    }
-
-  }
+  const isServiceProvider = watch('type') === "provider";
 
   return (
-    <div className="bg-black/90 text-white">
-      <div className="max-w-sm mx-auto items-start h-dvh grid pt-40 p-4 ">
+    <div className="bg-black/90 text-white py-10">
+      <div className="max-w-sm mx-auto items-start h-dvh grid py-10 p-4 ">
         <div className="w-full">
           <div className="w-full">
             <h4 className="text-4xl font-bold">Sign up with Payndit</h4>
           </div>
           <div className="mt-10">
-            <form className="w-full" onSubmit={handleSubmit(onSubmit as any)}>
+            <form className="w-full" onSubmit={onSubmit}>
               <div className="grid grid-flow-row w-full mb-4">
                 <label htmlFor="email" className="text-md mb-2">
                   Email address
@@ -58,7 +58,7 @@ const Signup = () => {
                   id="email"
                   placeholder="name@domain.com"
                   autoComplete=""
-                  className="w-full p-4 mb-2 bg-black border border-white rounded-md"
+                  className={`w-full p-4 mb-2 bg-black border border-white rounded-md outline-none ${errors?.email ? "border-red-600" : ""}`}
                   {...register('email', {
                     required: 'Email address is required',
                     pattern: {
@@ -70,7 +70,7 @@ const Signup = () => {
                 />
                 {errors?.email && (
                   <span className="text-xs text-red-500/70">
-                    {errors?.email?.message}
+                    {errors.email?.message}
                   </span>
                 )}
               </div>
@@ -82,7 +82,7 @@ const Signup = () => {
                   type="password"
                   id="password"
                   placeholder="*******"
-                  className="w-full p-4 mb-2 bg-black border border-white rounded-md"
+                  className={`w-full p-4 mb-2 bg-black border border-white rounded-md ${errors?.password ? "border-red-600 outline-none" : ""}`}
                   {...register('password', {
                     required: 'Password is required',
                     minLength: {
@@ -93,17 +93,33 @@ const Signup = () => {
                       value:
                         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
                       message:
-                        'Password must include uppercase, lowercase, numbers, and special characters',
+                        'Password must be at least 6 characters and include uppercase, lowercase, numbers, and special characters',
                     },
                   })}
                 />
-                <span className="text-xs">
-                  Password should contain upper and lower case letters, numbers,
-                  and special characters.
+                <span className={`text-xs ${errors?.password ? "text-red-600" : ""}`}>
+                 Password must be at least 6 characters and include uppercase, lowercase, numbers, and special characters
                 </span>
               </div>
+              <div className='grid grid-cols-2 gap-2 my-8 mt-12'>
+                <ProviderTab label='I am looking for services' isSelected={!isServiceProvider} onClick={() => setValue("type", "user")} /> 
+                <ProviderTab label='I am a service provider' isSelected={isServiceProvider} onClick={() => setValue("type", "provider")} />
+              </div>
+              
+              <div>
+                <div className='grid grid-flow-col gap-2 justify-start'>
+                  <input type='checkbox' id="terms_and_conditions" {...register('termsAndCondition', {
+                    required: "Please accept the Terms and Condition"
+                  })} />
+                  <label htmlFor="terms_and_conditions">
+                    Accept Terms and Conditions
+                  </label>
+                </div>
+              {errors.termsAndCondition && <span className='text-sm text-red-600'>{errors.termsAndCondition.message}</span>}
+              </div>
+
               <div className="mt-8">
-                <button className="w-full p-4 rounded-full bg-primary text-white/90">
+                <button type='submit' className="w-full p-4 rounded-full bg-primary text-white/90">
                   Signup
                 </button>
               </div>
@@ -118,7 +134,7 @@ const Signup = () => {
                 item.enabled && (
                   <div key={item.name} className="mb-4 ">
                     <button className="p-2 w-full h-14 border border-white text-white font-bold rounded-full hover:bg-primary">
-                      Signup with {item.name}
+                      Sign up with {item.name}
                     </button>
                   </div>
                 )
@@ -139,4 +155,23 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+type ProviderTabType = {
+  label: string;
+  isSelected?: boolean
+  onClick: () => void
+}
+const ProviderTab = ({label, isSelected, onClick}: ProviderTabType) => {
+  return (
+    <button onClick={onClick} type='button' className={`border-2 rounded-md p-2 text-sm hover:bg-primary/80 ${isSelected ? "bg-primary/80" : ""}`}>{label}</button>
+  )
+}
+
+const SignupProvider = () => {
+  return (
+    <Suspense>
+      <Signup />
+    </Suspense>
+  )
+}
+
+export default SignupProvider;
