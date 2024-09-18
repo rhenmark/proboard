@@ -3,42 +3,25 @@
 import Link from 'next/link';
 import { SocialMediaLogin, socialMediaLogin } from '../../constants/social-media';
 import { useRouter } from 'next/navigation';
-import { ChangeEvent, FormEvent, useState } from 'react';
-import { supabase } from '../../constants/conf/common';
+import { useForm } from 'react-hook-form';
+
+type LoginForm = {
+  email: string;
+  password: string;
+}
 
 export default function Login() {
   const router = useRouter()
-  const [emailForm, setEmailForm] = useState({email: "", password: ""})
+  const {register, handleSubmit, formState: { errors },} = useForm<LoginForm>();
   
   const handleSignin = () => {
     router.push('/account')
   }
 
-  const signInWithEmail = (event: FormEvent) => {
-    event.preventDefault()
-
-    const signIn = async () => {
-        const {data, error } = await supabase.auth.signInWithPassword({
-          email: emailForm.email,
-          password: emailForm.password,
-        });
-      
-        if (error) {
-          console.error('Error signing in:', error.message);
-          return;
-        }
-
-        console.log(data)
-        handleSignin()
-    }
-    
-    signIn()
-  }
-
-  const handleFormChange = (type: "email" | "password", val: ChangeEvent<HTMLInputElement>) => {
-    setEmailForm((state) => ({...state, [type]: val.target.value }))
-  }
-
+  const onSubmit = handleSubmit((data) => {
+    console.log(data)
+    handleSignin()
+  })
   return (
     <div className="bg-black text-white">
       <div className="max-w-sm bg-black/90 mx-auto min-h-dvh grid pt-20 p-4">
@@ -59,7 +42,7 @@ export default function Login() {
             <hr />
           </div>
           <div className="mt-4 w-full  grid grid-flow-row mx-auto">
-            <form onSubmit={signInWithEmail}>
+            <form onSubmit={onSubmit}>
               <div className="my-4">
                 <label htmlFor="email" className="text-md mb-2 inline-block">
                   Email or username
@@ -70,8 +53,14 @@ export default function Login() {
                   placeholder="Email or username"
                   className="w-full p-4 mb-2 bg-black border border-white rounded-md"
                   autoCorrect="false"
-                  value={emailForm.email}
-                  onChange={(val) => handleFormChange("email", val)}
+                  {...register('email', {
+                    required: 'Email address is required',
+                    pattern: {
+                      value:
+                        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                      message: 'Please enter a valid email address',
+                    },
+                  })}
                 />
               </div>
               <div className="my-4">
@@ -84,9 +73,14 @@ export default function Login() {
                   placeholder="Password"
                   className="w-full p-4 mb-2 bg-black border border-white rounded-md"
                   autoComplete="false"
-                  value={emailForm.password}
-                  onChange={(val) => handleFormChange("password", val)}
+                  {...register('password', {
+                    required: 'Password is required',
+                  })}
                 />
+                {
+                  errors.password &&  <span>{errors.password.message}</span>
+                }
+               
               </div>
               <div className="mt-4">
                 <button type='submit' className="p-4 w-full h-16 border-2 border-black bg-primary rounded-full text-white font-bold text-lg">
