@@ -1,10 +1,12 @@
 'use client';
 
 import { serviceCategories } from 'apps/payndit/src/constants/categories';
-import { useSearchParams } from 'next/navigation';
-import { FormEvent, Suspense, useState } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { FormEvent, Suspense, useEffect, useState } from 'react';
 
 const Setup = () => {
+  const router = useRouter()
+  const pathname = usePathname()
   const searchParams = useSearchParams();
   const activeParam = searchParams.get('activeState') || 'personal';
 
@@ -17,7 +19,27 @@ const Setup = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if(activeParam === "store") {
+      handleComplete()
+    } else {
+      handleNext()
+    }
+   
   };
+
+  const handleNext = () => {
+    const params = new URLSearchParams(searchParams);
+    let activeState = activeParam
+    if(activeState === "personal") activeState = "services"
+    if(activeState === "services") activeState = "store"
+    params.set('activeState', activeState);
+    const newParams = params.toString();
+    router.push(`${pathname}?${newParams}`);
+  }
+
+  const handleComplete = () => {
+    router.push(`/dashboard`);
+  }
 
   return (
     <div className="bg-black/90 min-h-dvh text-white">
@@ -30,7 +52,7 @@ const Setup = () => {
           <form onSubmit={handleSubmit}>
             <ActiveContent />
             <div className="my-8">
-              <button className="p-4 w-full bg-primary">Next</button>
+              <button type='submit' className="p-4 w-full bg-primary">{activeParam === "store" ? "Complete" : "Next"}</button>
             </div>
           </form>
         </div>
