@@ -6,7 +6,7 @@ import {
   socialMediaLogin,
 } from '../../constants/social-media';
 import { useForm } from 'react-hook-form';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useEffect } from 'react';
 
 type UserType = "user" | "provider"
@@ -20,6 +20,7 @@ type FormInput = {
 
 const Signup = () => {
   const searchParams = useSearchParams();
+  const router = useRouter()
   const queryType: UserType | string | null = searchParams.get('type') ;
   const {
     register,
@@ -28,8 +29,10 @@ const Signup = () => {
     setValue,
     watch
   } = useForm<FormInput>();
+  
   const onSubmit = handleSubmit((data) => {
     console.log(data)
+    router.push('/auth/setup')
   })
 
   useEffect(() => {
