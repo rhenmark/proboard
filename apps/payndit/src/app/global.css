@@ -85,4 +85,8 @@
         font-feature-settings: "rlig" 1, "calt" 1;
         min-height: 100dvh;
     }
+
+    input:active, input:focus {
+        outline: 1px solid white;
+    }
 }

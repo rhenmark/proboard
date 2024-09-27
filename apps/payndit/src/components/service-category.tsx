@@ -53,16 +53,16 @@ const ServicesCategory = () => {
 
     return (
         <div className="container m-auto px-4 mt-4">
-        <div className="grid grid-flow-col gap-3 overflow-x-scroll w-full">
+        <div className="flex flex-row justify-start items-center gap-3 overflow-x-scroll w-full">
             {
                categories.map((category, index) => (
-                <div key={index} className={`w-28 grid place-items-center relative`}>
-                    <Link href="/categories" rel="noopener noreferrer nofollow" className="absolute left-0 right-0 top-0 bottom-0 z-10" />
-                    <div className="bg-gray-100 h-16 w-16 rounded-full grid place-items-center pb-2">
-                        <Image src={category.icon} height={40} width={40} alt={category.name}  />
+                <div key={index} className={`min-w-[120px] w-full grid place-content-center relative py-4 px-2 rounded-md hover:bg-gray-100`}>
+                    <Link href="/categories" rel="noopener noreferrer nofollow" className="absolute left-0 right-0 top-0 bottom-0 z-10 w-full block" />
+                    <div className="bg-gray-100 h-16 w-full rounded-full grid place-items-center pb-2">
+                        <Image src={category.icon} height={32} width={32} alt={category.name}  />
                     </div>
                     <div className="min-h-14 w-full text-center pt-4">
-                        <span className="text-center">
+                        <span className="text-center text-sm">
                             {category.name}
                         </span>
                     </div>
