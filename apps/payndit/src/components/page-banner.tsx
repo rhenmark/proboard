@@ -1,5 +1,8 @@
 'use client';
 
+import { Search } from 'lucide-react';
+
+
 const PageBanner = () => {
   return (
     <div className="container m-auto">
@@ -13,8 +16,8 @@ const PageBanner = () => {
             placeholder="Paynd now!"
             className="w-full h-16 px-4 outline-none rounded-full text-2xl"
           />
-          <button className="bg-primary h-16 text-white rounded-full rounded-l-none border-2 border-primary text-2xl">
-            <span className="material-symbols-outlined text-4xl">search</span>
+          <button className="bg-primary h-16 rounded-full rounded-l-none border-2 border-primary grid place-items-center text-white">
+            <Search size={32} />
           </button>
         </div>
       </div>

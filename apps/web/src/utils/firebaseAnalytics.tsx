@@ -7,14 +7,14 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCYgsARn6sr13E9xhrtHqq3FPAeliYTd1w",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: "proboard-761a7.firebaseapp.com",
   databaseURL: "https://proboard-761a7-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "proboard-761a7",
   storageBucket: "proboard-761a7.appspot.com",
   messagingSenderId: "585868612166",
-  appId: "1:585868612166:web:7fea1d048e1a51b3757047",
-  measurementId: "G-VWNTFYKQMW"
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  // measurementId: "G-VWNTFYKQMW"
 };
 
 // Initialize Firebase
